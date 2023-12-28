@@ -14,7 +14,9 @@
         // Navigation Property
         public ICollection<Activity> Activities { get; set; } = new List<Activity>();
 
+        public Course Course { get; set; } = default!;
+
         //FK
-        public Course CourseId { get; set; } = default!;
+        public int CourseId { get; set; }
     }
 }

@@ -5,7 +5,8 @@
         public int Id { get; set; }
         public string ActivityTypeName { get; set; } = string.Empty;
 
-        // FK
-        public Activity ActivityId { get; set; } = default!;
+        // 
+        public ICollection<Activity> Activities { get; set; } = new List<Activity>();
+
     }
 }

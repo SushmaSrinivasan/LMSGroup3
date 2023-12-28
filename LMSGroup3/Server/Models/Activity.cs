@@ -3,15 +3,18 @@
     public class Activity
     {
         public int Id { get; set; }
-        public string ActivityName { get; set; } = string.Empty;
         public string ActivityDescription { get; set; } = string.Empty;
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
 
         // Navigation Property
-        public ICollection<ActivityType> ActivityTypes { get; set; } = new List<ActivityType>();
+        public ActivityType ActivityType { get; set; }
+
+        public Module Module { get; set; } = default!;
 
         // FK
-        public Module ModuleId { get; set; } = default!;
+        public int ModuleId { get; set; }
+
+        public int ActivityTypeId { get; set; }
     }
 }

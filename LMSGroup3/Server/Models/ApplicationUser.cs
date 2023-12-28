@@ -7,6 +7,11 @@ namespace LMSGroup3.Server.Models
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public string FullName => FirstName + " " + LastName;
-        public Course CourseId { get; set; }
+
+        // Navigation Property
+        public Course Course { get; set; } = default!;
+
+        // FK
+        public int? CourseId { get; set; }
     }
 }
