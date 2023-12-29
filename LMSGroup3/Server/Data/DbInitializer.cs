@@ -1,6 +1,7 @@
 ﻿using Bogus;
 using LMSGroup3.Server.Models;
 using Microsoft.AspNetCore.Identity;
+using System.Reflection;
 
 namespace LMSGroup3.Server.Data
 {
@@ -42,4 +43,103 @@ namespace LMSGroup3.Server.Data
             await db.SaveChangesAsync();
 
         }
+        // course names example
+        private static string[] CourseNames = { "C#", "Javascript", "Blazor" };
+
+        private static async Task<Course> CreateCourse()
+        {
+            var users = new List<ApplicationUser>();
+
+            //adding teachers
+            int teacherCount = Faker.Random.Int(1, 3);
+            for (int i = 0; i < teacherCount; i++)
+            {
+                users.Add(GenerateUser());
+            }
+            //adding students
+            int studentCount = Faker.Random.Int(2, 10);
+            for (int i = 0; i < studentCount; i++)
+            {
+                users.Add(GenerateUser());
+            }
+            //adding users to userManager
+            int j = 0;
+            foreach (var user in users)
+            {
+                j++;
+                await userManager.CreateAsync(user, "P@55w.rd");
+                await userManager.AddToRoleAsync(user, (j < teacherCount ? Roles[0].Name : Roles[1].Name)!);
+            }
+
+            var startDate = Faker.Date.Between(DateTime.Now, DateTime.Now.AddDays(100));
+            var endDate = startDate.AddDays(Faker.Random.Int(30, 120));
+
+            var modules = GenerateModules(startDate, endDate);
+
+            return new Course
+            {
+                Name = CourseNames[Faker.Random.Int(0, CourseNames.Length - 1)],
+                Description = Faker.Lorem.Sentence(),
+                StartDate = startDate,
+                EndDate = endDate,
+                Modules = modules,
+                Users = users,
+            };
+
+            //creating a single student
+            private static ApplicationUser GenerateUser()
+            {
+                var firstname = Faker.Name.FirstName();
+                var lastname = Faker.Name.LastName();
+                var email = Faker.Internet.Email(firstname, lastname);
+                var user = new ApplicationUser
+                {
+                    UserName = $"{firstname} {lastname}",
+                    Email = email,
+                    EmailConfirmed = true,
+                };
+                return user;
+            }
+            //creating modules with start and end date
+            private static List<Module> GenerateModules(DateTime start, DateTime end)
+            {
+                var output = new List<Module>();
+                var moduleCount = Faker.Random.Int(1, 4);
+                for (int i = 0; i < moduleCount; i++)
+                {
+                    // create a module with a start date after the previous module's end date
+                    output.Add(GenerateModule(i == 0 ? start : output[i - 1].EndDate));
+                }
+                return output;
+            }
+
+            //Example module names
+            private static readonly string[] ModuleNames = { "C#", "SQL", "Javascript","HTML/CSS" };
+
+        //Creating a single module
+        private static Module GenerateModule(DateTime startDate)
+        {
+            var endDate = Faker.Date.Soon(4);
+            return new Module
+            {
+                Name = ModuleNames[Faker.Random.Int(0, ModuleNames.Length - 1)],
+                Description = Faker.Lorem.Sentence(),
+                StartDate = startDate,
+                EndDate = endDate,
+                Activities = GenerateActivities(ActivityTypes, startDate, endDate)
+            };
+        }
+
+        //Example activity names
+        private static readonly List<ActivityType> ActivityTypes = new List<ActivityType>
+        {
+            new ActivityType { Name = "E-Learning" },
+            new ActivityType { Name = "Lecture" },
+            new ActivityType { Name = "Assignment" },
+        };
+
+
+
+    }
+}
 }
