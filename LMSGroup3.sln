@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LMSGroup3.Server", "LMSGroup3\Server\LMSGroup3.Server.csproj", "{53CD702A-EF54-488D-A805-92E1577B558E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LMSGroup3.Server", "LMSGroup3\Server\LMSGroup3.Server.csproj", "{53CD702A-EF54-488D-A805-92E1577B558E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LMSGroup3.Client", "LMSGroup3\Client\LMSGroup3.Client.csproj", "{DB38EFD2-0AAC-4D15-8B66-1A3E6B84CF50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LMSGroup3.Client", "LMSGroup3\Client\LMSGroup3.Client.csproj", "{DB38EFD2-0AAC-4D15-8B66-1A3E6B84CF50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LMSGroup3.Shared", "LMSGroup3\Shared\LMSGroup3.Shared.csproj", "{88341D9B-0991-439E-86A2-6F3B0818AD81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LMSGroup3.Shared", "LMSGroup3\Shared\LMSGroup3.Shared.csproj", "{88341D9B-0991-439E-86A2-6F3B0818AD81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LMSGroup3.Api", "LMSGroup3.Api\LMSGroup3.Api.csproj", "{AE3E2D0C-1560-4098-8B93-AEDCB6141CA1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{88341D9B-0991-439E-86A2-6F3B0818AD81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88341D9B-0991-439E-86A2-6F3B0818AD81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88341D9B-0991-439E-86A2-6F3B0818AD81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE3E2D0C-1560-4098-8B93-AEDCB6141CA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE3E2D0C-1560-4098-8B93-AEDCB6141CA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE3E2D0C-1560-4098-8B93-AEDCB6141CA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE3E2D0C-1560-4098-8B93-AEDCB6141CA1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
