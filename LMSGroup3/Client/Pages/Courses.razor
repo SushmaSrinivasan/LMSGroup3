@@ -1,0 +1,46 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using LMSGroup3.Shared
+
+@page "/courses"
+
+@attribute [Authorize]
+@inject HttpClient Http
+
+
+
+<PageTitle>Get Courses</PageTitle>
+
+<h1>Get Courses</h1>
+
+@if (courses == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Course Name</th>
+                <th>Course Description</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var course in courses)
+            {
+                <tr>
+                    <td>@course.CourseName </td>
+                    <td>@course.CourseDescription</td>
+                    <td>@course.StartDate.ToShortDateString()</td>
+                    <td>@course.EndDate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+}
