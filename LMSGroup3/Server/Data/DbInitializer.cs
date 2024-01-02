@@ -78,13 +78,14 @@ namespace LMSGroup3.Server.Data
 
             return new Course
             {
-                Name = CourseNames[Faker.Random.Int(0, CourseNames.Length - 1)],
-                Description = Faker.Lorem.Sentence(),
+                CourseName = CourseNames[Faker.Random.Int(0, CourseNames.Length - 1)],
+                CourseDescription = Faker.Lorem.Sentence(),
                 StartDate = startDate,
                 EndDate = endDate,
                 Modules = modules,
-                Users = users,
+                ApplicationUsers = users,
             };
+        }
 
             //creating a single student
             private static ApplicationUser GenerateUser()
@@ -101,9 +102,9 @@ namespace LMSGroup3.Server.Data
                 return user;
             }
             //creating modules with start and end date
-            private static List<Module> GenerateModules(DateTime start, DateTime end)
+            private static List<Models.Module> GenerateModules(DateTime start, DateTime end)
             {
-                var output = new List<Module>();
+                var output = new List<Models.Module>();
                 var moduleCount = Faker.Random.Int(1, 4);
                 for (int i = 0; i < moduleCount; i++)
                 {
@@ -114,32 +115,58 @@ namespace LMSGroup3.Server.Data
             }
 
             //Example module names
-            private static readonly string[] ModuleNames = { "C#", "SQL", "Javascript","HTML/CSS" };
+            private static readonly string[] ModuleNames = { "C#", "SQL", "Javascript","EF Core" };
 
         //Creating a single module
-        private static Module GenerateModule(DateTime startDate)
+        private static Models.Module GenerateModule(DateTime startDate)
         {
             var endDate = Faker.Date.Soon(4);
-            return new Module
+            return new Models.Module
             {
-                Name = ModuleNames[Faker.Random.Int(0, ModuleNames.Length - 1)],
-                Description = Faker.Lorem.Sentence(),
+                ModuleName = ModuleNames[Faker.Random.Int(0, ModuleNames.Length - 1)],
+                ModuleDescription = Faker.Lorem.Sentence(),
                 StartDate = startDate,
                 EndDate = endDate,
-                Activities = GenerateActivities(ActivityTypes, startDate, endDate)
+                Activities = GenerateActivities(ActivityTypes, startDate, endDate, ActivityDescription)
             };
         }
 
         //Example activity names
         private static readonly List<ActivityType> ActivityTypes = new List<ActivityType>
         {
-            new ActivityType { Name = "E-Learning" },
-            new ActivityType { Name = "Lecture" },
-            new ActivityType { Name = "Assignment" },
+            new ActivityType { ActivityTypeName = "E-Learning" },
+            new ActivityType { ActivityTypeName = "Lecture" },
+            new ActivityType { ActivityTypeName = "Assignment" },
         };
 
+        //Example activity descriptions
+        private static readonly string[] ActivityDescription = { "Pluralsight learnings", "Class Reviews", "Exercise Files" };
 
 
-    }
+        //Creating activities for a module
+        private static List<Activity> GenerateActivities(List<ActivityType> types, DateTime start, DateTime end, string[] activityDescription)
+        {
+            var activities = new List<Activity>();
+
+            var activityCount = Faker.Random.Int(types.Count, 3 * types.Count);
+
+            //creating activities randomly in any order
+            for (int i = 0; i < activityCount; i++)
+            {
+                var type = types[Faker.Random.Int(0, types.Count - 1)];
+                var description = ActivityDescription[Faker.Random.Int(0, (activityDescription.Length - 1))];
+                var startDate = activities.Count == 0 ? start : activities[i - 1].EndDate;
+                var endDate = activityCount == i - 1 ? end : Faker.Date.Between(startDate, end.Subtract(TimeSpan.FromSeconds(1)));
+                activities.Add(new Activity
+                {
+                    ActivityDescription = description,
+                    ActivityType = type,
+                    StartDate = startDate,
+                    EndDate = endDate,
+
+                });
+            }
+            return activities;
+        }
 }
 }
