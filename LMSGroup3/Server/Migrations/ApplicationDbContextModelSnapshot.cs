@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace LMSGroup3.Server.Data.Migrations
+namespace LMSGroup3.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -178,7 +178,7 @@ namespace LMSGroup3.Server.Data.Migrations
                     b.Property<int>("ActivityTypeId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("EndDate")
+                    b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("ModuleId")
@@ -193,7 +193,7 @@ namespace LMSGroup3.Server.Data.Migrations
 
                     b.HasIndex("ModuleId");
 
-                    b.ToTable("Activity");
+                    b.ToTable("Activities");
                 });
 
             modelBuilder.Entity("LMSGroup3.Server.Models.ActivityType", b =>
@@ -210,7 +210,7 @@ namespace LMSGroup3.Server.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ActivityType");
+                    b.ToTable("ActivityTypes");
                 });
 
             modelBuilder.Entity("LMSGroup3.Server.Models.ApplicationUser", b =>
@@ -315,7 +315,7 @@ namespace LMSGroup3.Server.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Course");
+                    b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("LMSGroup3.Server.Models.Module", b =>
@@ -347,7 +347,7 @@ namespace LMSGroup3.Server.Data.Migrations
 
                     b.HasIndex("CourseId");
 
-                    b.ToTable("Module");
+                    b.ToTable("Modules");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
