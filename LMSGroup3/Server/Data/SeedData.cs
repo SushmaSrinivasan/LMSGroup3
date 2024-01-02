@@ -29,7 +29,7 @@ namespace LMSGroup3.Server.Data
             var student = await AddAccountAsync(studentEmail, "Student", "TestAccount", "P@55w.rd");
 
             await AddUserToRoleAsync(teacher, "Teacher");
-            await AddUserToRoleAsync(student, "TestAccount");
+            await AddUserToRoleAsync(student, "Student");
         }
 
         private static async Task AddRolesAsync(string[] roleNames)
