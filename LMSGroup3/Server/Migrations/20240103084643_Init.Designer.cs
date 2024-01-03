@@ -12,13 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LMSGroup3.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-<<<<<<<< HEAD:LMSGroup3/Server/Migrations/20240102092809_init.Designer.cs
-    [Migration("20240102092809_init")]
-    partial class init
-========
     [Migration("20240103084643_Init")]
     partial class Init
->>>>>>>> origin/teacher_coursedetails_overview:LMSGroup3/Server/Migrations/20240103084643_Init.Designer.cs
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -186,7 +181,7 @@ namespace LMSGroup3.Server.Migrations
                     b.Property<int>("ActivityTypeId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("EndDate")
+                    b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("ModuleId")
@@ -390,6 +385,8 @@ namespace LMSGroup3.Server.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
