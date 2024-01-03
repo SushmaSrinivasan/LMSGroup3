@@ -2,11 +2,12 @@ using LMSGroup3.Server.Data;
 using LMSGroup3.Server.Models;
 using LMSGroup3.Server.Repositories;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using LMSGroup3.Server;
 using LMSGroup3.Server.Mappings;
+using Microsoft.AspNetCore.Identity;
+using LMSGroup3.Server.Extensions;
 //using AutoMapper..DependencyInjection;
 
 //using Microsoft./*Extensions.DependencyInjection;*/
@@ -39,7 +40,6 @@ if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
     app.UseWebAssemblyDebugging();
-    await app.SeedDataAsync();
 }
 else
 {
@@ -47,6 +47,8 @@ else
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+await app.SeedDataAsync();
 
 app.UseHttpsRedirection();
 
