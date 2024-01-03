@@ -1,13 +1,14 @@
 using LMSGroup3.Server.Data;
 using LMSGroup3.Server.Models;
+using LMSGroup3.Server.Repositories;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using LMSGroup3.Server.Extensions;
+using LMSGroup3.Server;
+using LMSGroup3.Server.Mappings;
+//using AutoMapper..DependencyInjection;
 
-//using LMSGroup3.Server;
-
+//using Microsoft./*Extensions.DependencyInjection;*/
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -25,9 +26,10 @@ builder.Services.AddIdentityServer()
 
 builder.Services.AddAuthentication()
     .AddIdentityServerJwt();
-
+builder.Services.AddScoped<ICourseRepository, CourseRepository>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+builder.Services.AddAutoMapper(typeof(Mapping));
 
 var app = builder.Build();
 
