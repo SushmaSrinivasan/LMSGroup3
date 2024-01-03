@@ -1,8 +1,7 @@
 ﻿namespace LMSGroup3.Client.Pages
 {
-    public partial class UserAdd
+    public partial class ModuleAdd
     {
-
 
     }
 }

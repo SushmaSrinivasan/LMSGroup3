@@ -1,0 +1,12 @@
+﻿@page "/moduleadd"
+@using Microsoft.AspNetCore.Authorization
+@using LMSGroup3.Shared.Domain.DTOs
+@inject HttpClient HttpClient
+
+@attribute [Authorize(Roles = "Teacher")]
+
+<h3>Add Modules</h3>
+
+@code {
+
+}
