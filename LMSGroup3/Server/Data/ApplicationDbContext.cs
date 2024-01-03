@@ -14,6 +14,16 @@ namespace LMSGroup3.Server.Data
         {
         }
 
+        public DbSet<Course> Courses { get; set; } = null!;
+        public DbSet<Module> Modules { get; set; } = null!;
+
+        public DbSet<Activity> Activities { get; set; } = null!;
+
+        public DbSet<ActivityType> ActivityTypes{ get; set; } = null!;
+
+
+
+
 
     }
 }

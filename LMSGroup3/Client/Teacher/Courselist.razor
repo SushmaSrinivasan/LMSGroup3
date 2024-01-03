@@ -1,0 +1,34 @@
+﻿@page "/courses"
+@inject HttpClient HttpClient
+@inherits ComponentBase
+
+<h3>Courses</h3>
+
+@if (courses == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Course Name</th>
+                <th>Start Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var course in courses)
+            {
+                <tr>
+                    <td>@course.Id</td>
+                    <td>@course.CourseName</td>
+                    <td>@course.StartDate.ToShortDateString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
