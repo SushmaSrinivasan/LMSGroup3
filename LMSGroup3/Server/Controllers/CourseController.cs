@@ -8,7 +8,7 @@ namespace LMSGroup3.Server.Controllers
 {
     [Authorize]
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class CourseController : ControllerBase
     {
         private readonly ICourseRepository _courseRepository;
@@ -21,6 +21,7 @@ namespace LMSGroup3.Server.Controllers
         }
 
         [HttpGet]
+        [Route("GetCourses")]
         public async Task<ActionResult<IEnumerable<CourseDto>>> GetCourses()
         {
             var courses =  await _courseRepository.GetAllCourses();
