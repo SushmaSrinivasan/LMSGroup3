@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LMSGroup3.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240102150520_Init")]
+    [Migration("20240103111046_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -181,7 +181,7 @@ namespace LMSGroup3.Server.Migrations
                     b.Property<int>("ActivityTypeId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("EndDate")
+                    b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("ModuleId")
