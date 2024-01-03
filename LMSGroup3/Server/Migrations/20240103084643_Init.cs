@@ -6,7 +6,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace LMSGroup3.Server.Migrations
 {
     /// <inheritdoc />
+<<<<<<<< HEAD:LMSGroup3/Server/Migrations/20240102092809_init.cs
     public partial class init : Migration
+========
+    public partial class Init : Migration
+>>>>>>>> origin/teacher_coursedetails_overview:LMSGroup3/Server/Migrations/20240103084643_Init.cs
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -281,7 +285,11 @@ namespace LMSGroup3.Server.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ActivityDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+<<<<<<<< HEAD:LMSGroup3/Server/Migrations/20240102092809_init.cs
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+========
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+>>>>>>>> origin/teacher_coursedetails_overview:LMSGroup3/Server/Migrations/20240103084643_Init.cs
                     ModuleId = table.Column<int>(type: "int", nullable: false),
                     ActivityTypeId = table.Column<int>(type: "int", nullable: false)
                 },
