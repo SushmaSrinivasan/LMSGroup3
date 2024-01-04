@@ -15,7 +15,6 @@ else
             <tr>
                 <th>Course Name</th>
                 <th>Start Date</th>
-
             </tr>
         </thead>
         <tbody>
@@ -28,7 +27,9 @@ else
                 <tr>
                     <authorizeview>
                         <authorized>
-                            <a style="cursor:pointer;" class="nav-link btn btn-link float-right" @onclick:preventDefault="true" @onclick="() => LoadModules(course.Id)">Modules</a>
+                            <td colspan="2">
+                                <a style="cursor:pointer;" class="nav-link btn btn-link float-right" @onclick:preventDefault="true" @onclick="() => LoadModules(course.Id)">Modules</a>
+                            </td>
                         </authorized>
                     </authorizeview>
                 </tr>
@@ -39,41 +40,51 @@ else
                             <h5>Modules for @course.CourseName</h5>
                             @if (modules != null)
                             {
-                                <ul>
-                                    @foreach (var module in modules)
+                                @foreach (var module in modules)
+                                {
+                            <tr>
+                                <td>@module.ModuleName</td>
+                                <td>
+                                    <a style="cursor:pointer;" class="nav-link btn btn-link float-right" @onclick:preventDefault="true" @onclick="() => LoadActivities(module.Id)">Activities</a>
+                                </td>
+                            </tr>
+                                    @if (moduleWithActivities != null && moduleWithActivities.Id == module.Id)
                                     {
-                                        <li>@module.ModuleName</li>
-                                        <a style="cursor:pointer;" class="nav-link btn btn-link float-right" @onclick:preventDefault="true" @onclick="() => LoadActivities(module.Id)">Activities</a>
+                                <tr>
+                                    <td colspan="2">
+                                        <h6>Activities for @moduleWithActivities.ModuleName</h6>
+                                                @if (activities != null)
+                                                {
+                                                    @foreach (var activity in activities)
+                                                    {
+                                        <tr>
+                                            <td>@activity.ActivityDescription</td>
+                                        </tr>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                    <tr>
+                                        <td colspan="2">
+                                            <p>Loading activities...</p>
+                                        </td>
+                                    </tr>
+                                                }
+                                </td>
+                                </tr>
                                     }
-                                </ul>
+                                }
                             }
                             else
                             {
-                                <p>Loading modules...</p>
-                            }
-                        </td>
-                    </tr>
-                    @if (moduleWithActivities != null && moduleWithActivities.Id == selectedModuleId)
-                    {
                         <tr>
                             <td colspan="2">
-                                <h5>Activities for @moduleWithActivities.ModuleName</h5>
-                                @if (activities != null)
-                                {
-                                    <ul>
-                                        @foreach (var activity in activities)
-                                        {
-                                            <li>@activity.ActivityDescription</li>
-                                        }
-                                    </ul>
-                                }
-                                else
-                                {
-                                    <p>Loading activities...</p>
-                                }
+                                <p>Loading modules...</p>
                             </td>
                         </tr>
-                    }
+                            }
+                    </td>
+                    </tr>
                 }
             }
         </tbody>
