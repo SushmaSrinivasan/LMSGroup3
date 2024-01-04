@@ -1,0 +1,18 @@
+﻿@page "/teacher/courses"
+<h3>CourseManagement</h3>
+
+@if (courses != null)
+{
+	foreach (var courses in courses)
+
+	{
+		<div>
+			<span>@course.Name</span>
+			<button @onclick="() => EditCourse(course)">Edit</button>
+			<button @onclick="() => DeleteCourse(course.Id)">Delete</button>
+		</div>
+	}
+}
+@code {
+
+}
