@@ -13,10 +13,8 @@ else
     <table class="table">
         <thead>
             <tr>
-                @* <th>ID</th> *@
                 <th>Course Name</th>
                 <th>Start Date</th>
-                @* <th>ModuleName</th> *@
 
             </tr>
         </thead>
@@ -24,11 +22,9 @@ else
             @foreach (var course in courses)
             {
                 <tr>
-                    @* <td>@course.Id</td> *@
                     <td>@course.CourseName</td>
                     <td>@course.StartDate.ToShortDateString()</td>
-                    @* <td>@course.ModuleId</td> *@
-                    @* <td>@course.ModuleName</td> *@
+                   
 
 
                 </tr>
@@ -37,10 +33,7 @@ else
                     <authorized>
                             <a class="nav-link btn btn-link float-right" href="modules?moduleId=@course.Id">Modules</a>
 
-                            @* <a class="nav-link btn btn-link float-right" href="activities?moduleId=@course.ModuleId">Activity</a> *@
-
-                            @* <a class="nav-link btn btn-link" href="activities">Activity</a> *@
-                        </authorized>
+                               </authorized>
                     </authorizeview>
                 </tr>
             }
