@@ -7,7 +7,10 @@ namespace LMSGroup3.Client.Teacher
     {
         private List<CourseDto> courses;
         private List<ModuleDto> modules;
+        private List<ActivityDto> activities;
+        private ModuleDto moduleWithActivities;
         private int selectedCourseId;
+        private int selectedModuleId;
 
         protected override async Task OnInitializedAsync()
         {
@@ -23,7 +26,15 @@ namespace LMSGroup3.Client.Teacher
         {
             selectedCourseId = courseId;
             modules = await HttpClient.GetFromJsonAsync<List<ModuleDto>>($"api/Course/GetModulesByCourse/{courseId}");
-            StateHasChanged(); // Force the component to re-render
+            StateHasChanged(); 
+        }
+
+        private async Task LoadActivities(int moduleId)
+        {
+            selectedModuleId = moduleId;
+            moduleWithActivities = modules.FirstOrDefault(m => m.Id == moduleId);
+            activities = await HttpClient.GetFromJsonAsync<List<ActivityDto>>($"api/Course/GetActivitiesByModule/{moduleId}");
+            StateHasChanged(); 
         }
         //private List<CourseDto> courses;
 

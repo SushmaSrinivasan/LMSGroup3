@@ -71,6 +71,14 @@ namespace LMSGroup3.Server.Repositories
                 .Where(m => m.CourseId == courseId)
                 .ToListAsync();
         }
+       
+
+        public async Task<IEnumerable<Activity>> GetActivitiesByModuleAsync(int moduleId)
+        {
+            return await _context.Activities
+                .Where(a => a.ModuleId == moduleId)
+                .ToListAsync();
+        }
 
         //public async Task<IEnumerable<CourseDto>> GetAllCoursesWithModules()
         //{

@@ -24,17 +24,11 @@ else
                 <tr>
                     <td>@course.CourseName</td>
                     <td>@course.StartDate.ToShortDateString()</td>
-
-
-
                 </tr>
                 <tr>
                     <authorizeview>
                         <authorized>
-                            <authorized>
-    <a style="cursor:pointer;" class="nav-link btn btn-link float-right" @onclick:preventDefault="true" @onclick="() => LoadModules(course.Id)">Modules</a>
-</authorized>
-
+                            <a style="cursor:pointer;" class="nav-link btn btn-link float-right" @onclick:preventDefault="true" @onclick="() => LoadModules(course.Id)">Modules</a>
                         </authorized>
                     </authorizeview>
                 </tr>
@@ -49,6 +43,7 @@ else
                                     @foreach (var module in modules)
                                     {
                                         <li>@module.ModuleName</li>
+                                        <a style="cursor:pointer;" class="nav-link btn btn-link float-right" @onclick:preventDefault="true" @onclick="() => LoadActivities(module.Id)">Activities</a>
                                     }
                                 </ul>
                             }
@@ -58,10 +53,29 @@ else
                             }
                         </td>
                     </tr>
+                    @if (moduleWithActivities != null && moduleWithActivities.Id == selectedModuleId)
+                    {
+                        <tr>
+                            <td colspan="2">
+                                <h5>Activities for @moduleWithActivities.ModuleName</h5>
+                                @if (activities != null)
+                                {
+                                    <ul>
+                                        @foreach (var activity in activities)
+                                        {
+                                            <li>@activity.ActivityDescription</li>
+                                        }
+                                    </ul>
+                                }
+                                else
+                                {
+                                    <p>Loading activities...</p>
+                                }
+                            </td>
+                        </tr>
+                    }
                 }
             }
         </tbody>
     </table>
 }
-
-

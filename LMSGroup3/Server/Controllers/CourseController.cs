@@ -67,6 +67,23 @@ namespace LMSGroup3.Server.Controllers
             var moduleDtos = _mapper.Map<List<ModuleDto>>(modules);
             return Ok(moduleDtos);
         }
+       
+
+        [HttpGet]
+        [Route("GetActivitiesByModule/{moduleId}")]
+        public async Task<ActionResult<IEnumerable<ActivityDto>>> GetActivitiesByModule(int moduleId)
+        {
+            var activities = await _courseRepository.GetActivitiesByModuleAsync(moduleId);
+
+            if (activities == null)
+            {
+                return NotFound("Activities not found");
+            }
+
+            var activityDtos = _mapper.Map<List<ActivityDto>>(activities);
+            return Ok(activityDtos);
+        }
+
 
     }
 
