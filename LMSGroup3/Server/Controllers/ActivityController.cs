@@ -21,10 +21,10 @@ namespace LMSGroup3.Server.Controllers
         }
         [HttpGet]
         [Route("GetActivities")]
-        public async Task<ActionResult<IEnumerable<ActivityDto>>> GetActivities()
+        public async Task<ActionResult<IEnumerable<ActivityDto>>> GetActivities([FromQuery] int moduleId)
         {
 
-            int moduleId = 1;
+            //int moduleId = 1;
             var activities = await _activityRepository.GetActivitiesByModuleId(moduleId);
 
            // var activities = await _activityRepository.GetAllActivities();
