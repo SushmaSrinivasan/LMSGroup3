@@ -45,6 +45,10 @@ else
                                 {
                             <tr>
                                 <td>@module.ModuleName</td>
+                                <td>@module.ModuleDescription</td>
+                                <td>@module.StartDate.ToShortDateString()</td>
+                                <td>@module.EndDate.ToShortDateString()</td>
+
                                 <td>
                                     <button type="button" class="btn btn-primary float-right" @onclick="() => LoadActivities(module.Id)">Activities</button>
 
@@ -61,6 +65,10 @@ else
                                                     {
                                         <tr>
                                             <td>@activity.ActivityDescription</td>
+                                            <td>@activity.StartDate.ToShortDateString()</td>
+                                            <td>@activity.EndDate.ToShortDateString()</td>
+                                            <td>@activity.ActivityTypeId</td>
+
                                         </tr>
                                                     }
                                                 }
