@@ -38,19 +38,36 @@ namespace LMSGroup3.Server.Controllers
 
             return Ok(courseDtos);
         }
+        //[HttpGet]
+        //[Route("GetModulesByCourse")]
+        //public async Task<ActionResult<IEnumerable<ModuleDto>>> GetModulesByCourse(int courseId)
+        //{
+        //    var moduleDto = await _courseRepository.GetCourseByIdAsync(courseId);
+
+        //    if (moduleDto == null)
+        //    {
+        //        return NotFound("Course not found");
+        //    }
+
+        //    return Ok(moduleDto);
+        //}
+        
+
         [HttpGet]
-        [Route("GetModulesByCourse")]
+        [Route("GetModulesByCourse/{courseId}")]
         public async Task<ActionResult<IEnumerable<ModuleDto>>> GetModulesByCourse(int courseId)
         {
-            var moduleDto = await _courseRepository.GetCourseByIdAsync(courseId);
+            var modules = await _courseRepository.GetModulesByCourseAsync(courseId);
 
-            if (moduleDto == null)
+            if (modules == null)
             {
-                return NotFound("Course not found");
+                return NotFound("Modules not found");
             }
 
-            return Ok(moduleDto);
+            var moduleDtos = _mapper.Map<List<ModuleDto>>(modules);
+            return Ok(moduleDtos);
         }
+
     }
 
 }

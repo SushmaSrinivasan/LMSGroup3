@@ -63,6 +63,15 @@ namespace LMSGroup3.Server.Repositories
             var modulesDto = _mapper.Map<List<ModuleDto>>(modules.Modules);
             return modulesDto;
         }
+        
+
+        public async Task<IEnumerable<Module>> GetModulesByCourseAsync(int courseId)
+        {
+            return await _context.Modules
+                .Where(m => m.CourseId == courseId)
+                .ToListAsync();
+        }
+
         //public async Task<IEnumerable<CourseDto>> GetAllCoursesWithModules()
         //{
         //    var courses = await _context.Courses

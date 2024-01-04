@@ -24,18 +24,41 @@ else
                 <tr>
                     <td>@course.CourseName</td>
                     <td>@course.StartDate.ToShortDateString()</td>
-                   
+
 
 
                 </tr>
                 <tr>
                     <authorizeview>
-                    <authorized>
-                            <a class="nav-link btn btn-link float-right" href="modules?moduleId=@course.Id">Modules</a>
+                        <authorized>
+                            <authorized>
+    <a style="cursor:pointer;" class="nav-link btn btn-link float-right" @onclick:preventDefault="true" @onclick="() => LoadModules(course.Id)">Modules</a>
+</authorized>
 
-                               </authorized>
+                        </authorized>
                     </authorizeview>
                 </tr>
+                @if (course.Id == selectedCourseId)
+                {
+                    <tr>
+                        <td colspan="2">
+                            <h5>Modules for @course.CourseName</h5>
+                            @if (modules != null)
+                            {
+                                <ul>
+                                    @foreach (var module in modules)
+                                    {
+                                        <li>@module.ModuleName</li>
+                                    }
+                                </ul>
+                            }
+                            else
+                            {
+                                <p>Loading modules...</p>
+                            }
+                        </td>
+                    </tr>
+                }
             }
         </tbody>
     </table>
