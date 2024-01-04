@@ -1,10 +1,10 @@
-﻿@page "/courses"
+﻿@page "/activities"
 @inject HttpClient HttpClient
 @inherits ComponentBase
 
-<h3>Courses</h3>
+<h3>Activities</h3>
 
-@if (courses == null)
+@if (activities == null)
 {
     <p>Loading...</p>
 }
@@ -19,16 +19,16 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var course in courses)
+            @foreach (var course in activities)
             {
                 <tr>
                     <td>@course.Id</td>
                     <td>@course.CourseName</td>
                     <td>@course.StartDate.ToShortDateString()</td>
                 </tr>
-                <tr>
+               @*  <tr>
                     <a class="nav-link btn btn-link" href="activity/activity">Activity</a>
-                </tr>
+                </tr> *@
             }
         </tbody>
     </table>
