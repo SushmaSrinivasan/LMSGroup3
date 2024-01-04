@@ -1,6 +1,8 @@
 ﻿@page "/activities"
 @inject HttpClient HttpClient
 @inherits ComponentBase
+@using System.Net.Http.Json;
+@using LMSGroup3.Shared.Domain.DTOs;
 
 <h3>Activities</h3>
 
@@ -14,17 +16,21 @@ else
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Course Name</th>
+                <th>Activity Description</th>
                 <th>Start Date</th>
+                <th>End Date</th>
+
             </tr>
         </thead>
         <tbody>
-            @foreach (var course in activities)
+            @foreach (var activity in activities)
             {
                 <tr>
-                    <td>@course.Id</td>
-                    <td>@course.CourseName</td>
-                    <td>@course.StartDate.ToShortDateString()</td>
+                    <td>@activity.Id</td>
+                    <td>@activity.ActivityDescription</td>
+                    <td>@activity.StartDate.ToShortDateString()</td>
+                    <td>@activity.EndDate.ToShortDateString()</td>
+
                 </tr>
                @*  <tr>
                     <a class="nav-link btn btn-link" href="activity/activity">Activity</a>
@@ -35,3 +41,14 @@ else
 }
 
 
+
+@code {
+
+    private List<ActivityDto> activities;
+
+    protected override async Task OnInitializedAsync()
+    {
+        activities = await HttpClient.GetFromJsonAsync<List<ActivityDto>>("api/Activity/GetActivities");
+    }
+}
+     

@@ -6,5 +6,7 @@ namespace LMSGroup3.Server.Repositories
     {
         Task<Activity> Get(int id);
         Task<IEnumerable<Activity>> GetAllActivities();
+        Task<IEnumerable<Activity>> GetActivitiesByModuleId(int moduleID);
+
     }
 }

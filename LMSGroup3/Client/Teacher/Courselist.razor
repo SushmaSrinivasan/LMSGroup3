@@ -13,21 +13,33 @@ else
     <table class="table">
         <thead>
             <tr>
-                <th>ID</th>
+                @* <th>ID</th> *@
                 <th>Course Name</th>
                 <th>Start Date</th>
+                <th>ModuleName</th>
+
             </tr>
         </thead>
         <tbody>
             @foreach (var course in courses)
             {
                 <tr>
-                    <td>@course.Id</td>
+                    @* <td>@course.Id</td> *@
                     <td>@course.CourseName</td>
                     <td>@course.StartDate.ToShortDateString()</td>
+                    @* <td>@course.ModuleId</td> *@
+                    <td>@course.ModuleName</td>
+
+
                 </tr>
                 <tr>
-                    <a class="nav-link btn btn-link" href="activity/activity">Activity</a>
+                    <authorizeview>
+                    <authorized>
+                            <a class="nav-link btn btn-link float-right" href="activities">Activity</a>
+
+                            @* <a class="nav-link btn btn-link" href="activities">Activity</a> *@
+                        </authorized>
+                    </authorizeview>
                 </tr>
             }
         </tbody>

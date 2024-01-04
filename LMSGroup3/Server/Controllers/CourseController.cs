@@ -12,24 +12,33 @@ namespace LMSGroup3.Server.Controllers
     public class CourseController : ControllerBase
     {
         private readonly ICourseRepository _courseRepository;
-        
-        private readonly IMapper _mapper; 
+
+        private readonly IMapper _mapper;
         public CourseController(ICourseRepository courseRepository, IMapper mapper)
         {
             _courseRepository = courseRepository;
             _mapper = mapper;
         }
-
         [HttpGet]
-        [Route("GetCourses")]
-        public async Task<ActionResult<IEnumerable<CourseDto>>> GetCourses()
+        [Route("GetCoursesWithModules")]
+        public async Task<ActionResult<IEnumerable<CourseDto>>> GetCoursesWithModules()
         {
-            var courses =  await _courseRepository.GetAllCourses();
+            var courses = await _courseRepository.GetAllCoursesWithModules();
             var courseDtos = _mapper.Map<List<CourseDto>>(courses);
 
             return Ok(courseDtos);
-            }
         }
+        //[HttpGet]
+        //[Route("GetCourses")]
+        //public async Task<ActionResult<IEnumerable<CourseDto>>> GetCourses()
+        //{
+        //    var courses =  await _courseRepository.GetAllCourses();
+        //    var courseDtos = _mapper.Map<List<CourseDto>>(courses);
+
+        //    return Ok(courseDtos);
+        //    }
+        //}
 
     }
+}
 

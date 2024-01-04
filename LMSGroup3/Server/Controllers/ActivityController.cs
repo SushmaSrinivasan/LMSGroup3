@@ -1,11 +1,15 @@
 ﻿using AutoMapper;
 using LMSGroup3.Server.Repositories;
 using LMSGroup3.Shared.Domain.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LMSGroup3.Server.Controllers
 {
-    public class ActivityController : Controller
+    [Authorize]
+    [ApiController]
+    [Route("api/[controller]")]
+    public class ActivityController : ControllerBase
     {
         private readonly IActivityRepository _activityRepository;
 
@@ -17,9 +21,13 @@ namespace LMSGroup3.Server.Controllers
         }
         [HttpGet]
         [Route("GetActivities")]
-        public async Task<ActionResult<IEnumerable<ActivityDto>>> GetCourses()
+        public async Task<ActionResult<IEnumerable<ActivityDto>>> GetActivities()
         {
-            var activities = await _activityRepository.GetAllActivities();
+
+            int moduleId = 1;
+            var activities = await _activityRepository.GetActivitiesByModuleId(moduleId);
+
+           // var activities = await _activityRepository.GetAllActivities();
             var activityDtos = _mapper.Map<List<ActivityDto>>(activities);
 
             return Ok(activityDtos);
