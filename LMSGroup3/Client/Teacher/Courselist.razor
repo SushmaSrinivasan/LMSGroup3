@@ -10,7 +10,7 @@
 }
 else
 {
-    <table class="table">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Course Name</th>
@@ -28,7 +28,8 @@ else
                     <authorizeview>
                         <authorized>
                             <td colspan="2">
-                                <a style="cursor:pointer;" class="nav-link btn btn-link float-right" @onclick:preventDefault="true" @onclick="() => LoadModules(course.Id)">Modules</a>
+                                <button type="button" class="btn btn-primary float-right" @onclick="() => LoadModules(course.Id)">Modules</button>
+
                             </td>
                         </authorized>
                     </authorizeview>
@@ -45,7 +46,8 @@ else
                             <tr>
                                 <td>@module.ModuleName</td>
                                 <td>
-                                    <a style="cursor:pointer;" class="nav-link btn btn-link float-right" @onclick:preventDefault="true" @onclick="() => LoadActivities(module.Id)">Activities</a>
+                                    <button type="button" class="btn btn-primary float-right" @onclick="() => LoadActivities(module.Id)">Activities</button>
+
                                 </td>
                             </tr>
                                     @if (moduleWithActivities != null && moduleWithActivities.Id == module.Id)
