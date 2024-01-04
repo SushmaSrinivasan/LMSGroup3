@@ -1,0 +1,55 @@
+﻿@page "/activities"
+@inject HttpClient HttpClient
+@inherits ComponentBase
+
+@using System.Net.Http.Json;
+@using LMSGroup3.Shared.Domain.DTOs;
+
+<h3>Activities</h3>
+
+@if (activities == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Activity Description</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var activity in activities)
+            {
+                <tr>
+                    <td>@activity.Id</td>
+                    <td>@activity.ActivityDescription</td>
+                    <td>@activity.StartDate.ToShortDateString()</td>
+                    <td>@activity.EndDate.ToShortDateString()</td>
+
+                </tr>
+               @*  <tr>
+                    <a class="nav-link btn btn-link" href="activity/activity">Activity</a>
+                </tr> *@
+            }
+        </tbody>
+    </table>
+}
+
+
+
+@code {
+    private List<ActivityDto> activities;
+    private int moduleId =5;
+
+    protected override async Task OnInitializedAsync()
+    {
+        activities = await HttpClient.GetFromJsonAsync<List<ActivityDto>>($"api/Activity/GetActivities?moduleId={moduleId}");
+    }
+}
+     

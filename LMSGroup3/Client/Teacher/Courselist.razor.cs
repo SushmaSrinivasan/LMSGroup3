@@ -10,7 +10,7 @@ namespace LMSGroup3.Client.Teacher
 
         protected override async Task OnInitializedAsync()
         {
-            courses = await HttpClient.GetFromJsonAsync<List<CourseDto>>("api/Course/GetCourses");
+            courses = await HttpClient.GetFromJsonAsync<List<CourseDto>>("api/Course/GetCoursesWithModules");
         }
     }
 }

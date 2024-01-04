@@ -4,7 +4,10 @@ using global::LMSGroup3.Server.Models;
 using LMSGroup3.Server.Data;
 using LMSGroup3.Server.Models;
 using LMSGroup3.Server.Repositories;
+using LMSGroup3.Shared.Domain.DTOs;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
+using AutoMapper;
 
 namespace LMSGroup3.Server.Repositories
 {
@@ -13,9 +16,12 @@ namespace LMSGroup3.Server.Repositories
     public class CourseRepository : ICourseRepository
     {
         private readonly ApplicationDbContext _context;
-        public CourseRepository(ApplicationDbContext context)
+        private readonly IMapper _mapper;
+
+        public CourseRepository(ApplicationDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public async Task<Course> Get(int id)
@@ -27,6 +33,41 @@ namespace LMSGroup3.Server.Repositories
         {
             return  _context.Courses;
         }
+        public async Task<IEnumerable<CourseDto>> GetAllCoursesWithModules()
+        {
+            var coursesWithModules = await _context.Courses
+                .Include(c => c.Modules)
+                .ToListAsync();
+
+            var courseDto = coursesWithModules
+                .SelectMany(course => course.Modules.Select(module => new CourseDto
+                {
+                    Id = course.Id,
+                    CourseName = course.CourseName,
+                    CourseDescription = course.CourseDescription,
+                    StartDate= course.StartDate,
+                    EndDate= course.EndDate,
+                    ModuleId = module.Id,
+                    ModuleName = module.ModuleName
+                    // Add other properties as needed
+                }))
+                .ToList();
+
+            return courseDto;
+        }
+
+        //public async Task<IEnumerable<CourseDto>> GetAllCoursesWithModules()
+        //{
+        //    var courses = await _context.Courses
+        //        .Include(c => c.Modules)
+        //        .ToListAsync();
+
+        //    // Map the entities to DTOs
+        //    var courseDtos = _mapper.Map<List<CourseDto>>(courses);
+        //    return courseDtos;
+
+        //    //return courses;
+        //}
     }
 }
 
