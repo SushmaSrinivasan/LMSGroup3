@@ -3,6 +3,7 @@ using LMSGroup3.Server.Repositories;
 using LMSGroup3.Shared.Domain.DTOs;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace LMSGroup3.Server.Controllers
 {
@@ -28,17 +29,30 @@ namespace LMSGroup3.Server.Controllers
 
             return Ok(courseDtos);
         }
-        //[HttpGet]
-        //[Route("GetCourses")]
-        //public async Task<ActionResult<IEnumerable<CourseDto>>> GetCourses()
-        //{
-        //    var courses =  await _courseRepository.GetAllCourses();
-        //    var courseDtos = _mapper.Map<List<CourseDto>>(courses);
+        [HttpGet]
+        [Route("GetCourses")]
+        public async Task<ActionResult<IEnumerable<CourseDto>>> GetCourses()
+        {
+            var courses = await _courseRepository.GetAllCourses();
+            var courseDtos = _mapper.Map<List<CourseDto>>(courses);
 
-        //    return Ok(courseDtos);
-        //    }
-        //}
+            return Ok(courseDtos);
+        }
+        [HttpGet]
+        [Route("GetModulesByCourse")]
+        public async Task<ActionResult<IEnumerable<ModuleDto>>> GetModulesByCourse(int courseId)
+        {
+            var moduleDto = await _courseRepository.GetCourseByIdAsync(courseId);
 
+            if (moduleDto == null)
+            {
+                return NotFound("Course not found");
+            }
+
+            return Ok(moduleDto);
+        }
     }
+
 }
+
 

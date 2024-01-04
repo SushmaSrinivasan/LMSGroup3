@@ -1,10 +1,9 @@
-﻿@page "/courses"
+﻿@* <h3>Moduleslist</h3> *@
+@page "/modules"
 @inject HttpClient HttpClient
 @inherits ComponentBase
 
-<h3>Courses</h3>
-
-@if (courses == null)
+@if (modules == null)
 {
     <p>Loading...</p>
 }
@@ -14,19 +13,21 @@ else
         <thead>
             <tr>
                 @* <th>ID</th> *@
-                <th>Course Name</th>
-                <th>Start Date</th>
-                @* <th>ModuleName</th> *@
+                <th>Module Name</th>
+                @* <th>Start Date</th> *@
+                <th>ModuleName</th> 
 
             </tr>
         </thead>
         <tbody>
-            @foreach (var course in courses)
+            @foreach (var module in modules)
             {
                 <tr>
                     @* <td>@course.Id</td> *@
-                    <td>@course.CourseName</td>
-                    <td>@course.StartDate.ToShortDateString()</td>
+                    <td>@module.Id</td>
+                    <td>@module.ModuleName</td>
+
+                    @* <td>@module.StartDate.ToShortDateString()</td> *@
                     @* <td>@course.ModuleId</td> *@
                     @* <td>@course.ModuleName</td> *@
 
@@ -34,10 +35,10 @@ else
                 </tr>
                 <tr>
                     <authorizeview>
-                    <authorized>
-                            <a class="nav-link btn btn-link float-right" href="modules?moduleId=@course.Id">Modules</a>
+                        <authorized>
+                            @* <a class="nav-link btn btn-link float-right" href="modules?courseId=@module.Id">Modules</a> *@
 
-                            @* <a class="nav-link btn btn-link float-right" href="activities?moduleId=@course.ModuleId">Activity</a> *@
+                            <a class="nav-link btn btn-link float-right" href="activities?moduleId=@module.Id">Activity</a>
 
                             @* <a class="nav-link btn btn-link" href="activities">Activity</a> *@
                         </authorized>
@@ -47,5 +48,3 @@ else
         </tbody>
     </table>
 }
-
-
