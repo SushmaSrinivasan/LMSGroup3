@@ -13,6 +13,24 @@
     </NotAuthorized>
 </AuthorizeView>
 
+@* <AuthorizeView Roles="Teacher, Student">
+    <Authorized>
+        <a href="authentication/profile">Hello, @context.User.Identity?.Name!</a>
+        <button class="nav-link btn btn-link" @onclick="BeginLogOut">Log out</button>
+
+        <!-- Nested Authorization, Content visible only to users with the Teacher role -->
+        <AuthorizeView Roles="Teacher">
+            <Authorized Context="TeacherView">
+                <p>Welcome, Teacher!</p>
+                <a href="authentication/register">Register</a>
+            </Authorized>
+        </AuthorizeView>
+    </Authorized>
+    <NotAuthorized>
+        <a href="authentication/login">Log in</a>
+    </NotAuthorized>
+</AuthorizeView> *@
+
 @code{
     private void BeginLogOut()
     {
