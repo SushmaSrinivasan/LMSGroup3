@@ -2,6 +2,9 @@
 @inject HttpClient HttpClient
 @inherits ComponentBase
 
+@using LMSGroup3.Shared.Domain.DTOs;
+
+
 @if (modules == null)
 {
     <p>Loading...</p>
@@ -46,4 +49,13 @@ else
             }
         </tbody>
     </table>
+}
+@code{
+
+    private List<ModuleDto> modules;
+    private int courseid = 3;
+    protected override async Task OnInitializedAsync()
+    {
+        modules = await HttpClient.GetFromJsonAsync<List<ModuleDto>>($"api/Course/GetModulesByCourse?courseid={courseid}");
+    }
 }
