@@ -18,6 +18,8 @@ namespace LMSGroup3.Shared.Domain.DTOs
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
+        public int CourseId { get; set; }
+
         public ICollection<Activity> Activities { get; set; } = new List<Activity>();
     }
 }

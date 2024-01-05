@@ -12,10 +12,10 @@ namespace LMSGroup3.Server.Data
             var db = serviceProvider.GetRequiredService<ApplicationDbContext>();
 
             // Delete the database if it exists
-            await db.Database.EnsureDeletedAsync();
+           // await db.Database.EnsureDeletedAsync();
 
             // Run all the migrations, if the database doesn't exist create it, if it exist, just update the database
-            await db.Database.MigrateAsync();
+            //await db.Database.MigrateAsync();
 
             try
             {

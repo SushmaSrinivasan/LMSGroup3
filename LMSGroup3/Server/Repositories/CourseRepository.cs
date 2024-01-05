@@ -4,6 +4,7 @@ using global::LMSGroup3.Server.Models;
 using LMSGroup3.Server.Data;
 using LMSGroup3.Server.Models;
 using LMSGroup3.Server.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 
 namespace LMSGroup3.Server.Repositories
@@ -20,7 +21,9 @@ namespace LMSGroup3.Server.Repositories
 
         public async Task<Course> Get(int id)
         {
-            return _context.Courses.FirstOrDefault(c => c.Id == id);
+            return _context.Courses
+                .Include(m => m.Modules)
+                .FirstOrDefault(c => c.Id == id);
         }
 
         public async Task<IEnumerable<Course> >GetAllCourses()

@@ -18,6 +18,6 @@ namespace LMSGroup3.Shared.Domain.DTOs
         // Navigation Property
         //public ICollection<ApplicationUser> ApplicationUsers { get; set; } = new List<ApplicationUser>();
 
-        public ICollection<Module> Modules { get; set; } = new List<Module>();
+        public ICollection<ModuleDto> Modules { get; set; } = new List<ModuleDto>();
     }
 }

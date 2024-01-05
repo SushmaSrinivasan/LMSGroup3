@@ -4,7 +4,9 @@ namespace LMSGroup3.Server.Repositories
 {
     public interface IModuleRepository
     {
-        Task<Course> Get(int id);
-        Task<IEnumerable<Module>> GetAllModules();
+        Task<Module> GetModule(int id);
+        Task<IEnumerable<Module>> GetModules();
+
+        Task<Module> AddModule(Module module);
     }
 }
