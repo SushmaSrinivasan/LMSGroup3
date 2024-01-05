@@ -1,6 +1,7 @@
-﻿using LMSGroup3.Shared.Domain.DTOs;
+﻿using System.Net.Http.Json;
+using LMSGroup3.Shared.Domain.DTOs;
 using Microsoft.AspNetCore.Components;
-using System.Net.Http.Json;
+
 
 namespace LMSGroup3.Client.Teacher
 {
