@@ -1,9 +1,10 @@
 using System.Net.Http.Json;
 using LMSGroup3.Shared.Domain.DTOs;
+using Microsoft.AspNetCore.Components;
 
 namespace LMSGroup3.Client.Teacher
 {
-    public partial class Courselist
+    public partial class Courselist : ComponentBase
     {
         private List<CourseDto> courses;
         private List<ModuleDto> modules;

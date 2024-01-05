@@ -10,12 +10,12 @@ using System.Text.Json;
 namespace LMSGroup3.Client.Pages
 {
     [Authorize(Roles = "Teacher")]
-    public partial class ModuleAdd
+    public partial class ModuleAdd : ComponentBase
     {
 
         [Inject]
         public NavigationManager NavigationManager { get; set; } = default!;
-        public Module? Module { get; set; }
+        public ModuleDto Module { get; set; }
 
         public string ErrorMessage = string.Empty;
 
