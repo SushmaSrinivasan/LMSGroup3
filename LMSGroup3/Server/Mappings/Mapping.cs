@@ -15,6 +15,8 @@ namespace LMSGroup3.Server.Mappings
 
             CreateMap<Course, CourseDto>();
             CreateMap<Activity, ActivityDto>();
+            CreateMap<Module, ModuleDto>();
+
 
 
         }

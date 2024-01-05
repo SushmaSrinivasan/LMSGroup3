@@ -43,13 +43,5 @@ else
 
 
 
-@code {
-    private List<ActivityDto> activities;
-    private int moduleId =5;
 
-    protected override async Task OnInitializedAsync()
-    {
-        activities = await HttpClient.GetFromJsonAsync<List<ActivityDto>>($"api/Activity/GetActivities?moduleId={moduleId}");
-    }
-}
      

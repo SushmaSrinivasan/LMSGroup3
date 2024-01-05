@@ -10,5 +10,10 @@ namespace LMSGroup3.Shared.Domain.DTOs
     {
         public int Id { get; set; }
         public string ModuleName { get; set; }
+        public string ModuleDescription { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public int CourseId { get; set; }
+
     }
 }

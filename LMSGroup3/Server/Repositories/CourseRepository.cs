@@ -49,11 +49,35 @@ namespace LMSGroup3.Server.Repositories
                     EndDate= course.EndDate,
                     ModuleId = module.Id,
                     ModuleName = module.ModuleName
-                    // Add other properties as needed
+   
                 }))
                 .ToList();
 
             return courseDto;
+        }
+        public async Task<IEnumerable<ModuleDto>> GetCourseByIdAsync(int courseId)
+        {
+            var modules = await _context.Courses
+                .Include(c => c.Modules)
+                .FirstOrDefaultAsync(c => c.Id == courseId);
+            var modulesDto = _mapper.Map<List<ModuleDto>>(modules.Modules);
+            return modulesDto;
+        }
+        
+
+        public async Task<IEnumerable<Module>> GetModulesByCourseAsync(int courseId)
+        {
+            return await _context.Modules
+                .Where(m => m.CourseId == courseId)
+                .ToListAsync();
+        }
+       
+
+        public async Task<IEnumerable<Activity>> GetActivitiesByModuleAsync(int moduleId)
+        {
+            return await _context.Activities
+                .Where(a => a.ModuleId == moduleId)
+                .ToListAsync();
         }
 
         //public async Task<IEnumerable<CourseDto>> GetAllCoursesWithModules()

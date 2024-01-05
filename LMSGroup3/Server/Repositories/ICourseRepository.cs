@@ -8,5 +8,9 @@ namespace LMSGroup3.Server.Repositories
         Task<Course> Get(int id);
         Task<IEnumerable<Course>> GetAllCourses();
         Task<IEnumerable<CourseDto>> GetAllCoursesWithModules();
+        Task<IEnumerable<ModuleDto>> GetCourseByIdAsync(int courseid);
+        Task<IEnumerable<Module>> GetModulesByCourseAsync(int courseId);
+        Task<IEnumerable<Activity>> GetActivitiesByModuleAsync(int moduleId);
+
     }
 }
