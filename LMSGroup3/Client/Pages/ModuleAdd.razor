@@ -1,0 +1,55 @@
+﻿@page "/moduleadd"
+@using Microsoft.AspNetCore.Authorization
+@using LMSGroup3.Shared.Domain.DTOs
+@inject HttpClient HttpClient
+
+@* @attribute [Authorize(Roles = "Teacher")] *@
+
+<h3>Add Modules</h3>
+
+@if (!string.IsNullOrEmpty(ErrorMessage))
+{
+    <div class="alert alert-danger" role="alert">
+        @ErrorMessage
+    </div>
+}
+
+
+<section class="module-add">
+
+    <EditForm Model="@Module" OnValidSubmit="@HandleValidSubmit">
+
+        <DataAnnotationsValidator/>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ModuleName</th>
+                    <th scope="col">ModuleDescription</th>
+                    <th scope="col">StartDate</th>
+                    <th scope="col">EndDate</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row">
+                        <InputText id="ModuleName" @bind-Value="Module.ModuleName" class="form-control col-md-8"></InputText>
+                        <ValidationMessage For="@(() => Module.ModuleName)" />
+                    </td>
+                    <td scope="row">
+                        <InputText id="ModuleDescription" @bind-Value="Module.ModuleDescription" class="form-control col-md-8"></InputText>
+                        <ValidationMessage For="@(() => Module.ModuleDescription)" />
+                    </td>
+                    <td scope="row">
+                        <InputDate id="StartDate" @bind-Value="Module.StartDate" class="form-control col-md-8"></InputDate>
+                     </td>
+                    <td scope="row">
+                        <InputDate id="EndDate" @bind-Value="Module.EndDate" class="form-control col-md-8"></InputDate>
+                    </td>
+                </tr>
+            </tbody>
+         </table>
+        @* <a href="@($"/courses/{CourseId}/modules")" class="btn btn-outline-primary">Back to Module list</a>&nbsp;
+        <button type="submit" class="btn btn-primary me-1">Add Module</button> *@
+    </EditForm>
+</section>

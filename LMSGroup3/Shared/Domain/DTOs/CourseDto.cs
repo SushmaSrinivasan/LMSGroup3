@@ -15,6 +15,8 @@ namespace LMSGroup3.Shared.Domain.DTOs
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
 
+        public int ModuleId { get; set; }
+        public string ModuleName { get; set; }
         // Navigation Property
         //public ICollection<ApplicationUser> ApplicationUsers { get; set; } = new List<ApplicationUser>();
 
