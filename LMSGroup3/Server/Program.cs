@@ -39,7 +39,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
     app.UseWebAssemblyDebugging();
-    await app.SeedDataAsync();
+    //await app.SeedDataAsync();
 }
 else
 {
