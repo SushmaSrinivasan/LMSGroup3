@@ -9,12 +9,11 @@
 <AuthorizeView Roles="Teacher">
     <Authorized>
         <h5>Welcome teacher @context.User.Identity?.Name!</h5>
+    </Authorized>
+</AuthorizeView>
 
-        <AuthorizeView Roles="Student">
-            <Authorized Context="StudentView">
-                @StudentView <h5>Welcome student @context.User.Identity?.Name!</h5>
-            </Authorized>
-        </AuthorizeView>
-
+<AuthorizeView Roles="Student">
+    <Authorized>
+        <h5>Welcome student @context.User.Identity?.Name!</h5>
     </Authorized>
 </AuthorizeView>
