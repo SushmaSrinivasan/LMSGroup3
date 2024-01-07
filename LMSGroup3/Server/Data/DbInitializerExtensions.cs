@@ -16,7 +16,7 @@ namespace LMSGroup3.Server.Data
            await db.Database.EnsureDeletedAsync();
 
             // Run all the migrations, if the database doesn't exist create it, if it exist, just update the database
-            //await db.Database.MigrateAsync();
+            await db.Database.MigrateAsync();
 
             try
             {

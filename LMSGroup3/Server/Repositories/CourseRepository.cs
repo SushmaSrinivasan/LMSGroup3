@@ -26,60 +26,12 @@ namespace LMSGroup3.Server.Repositories
 
         public async Task<Course> Get(int id)
         {
-            return _context.Courses
-                .Include(m => m.Modules)
-                .FirstOrDefault(c => c.Id == id);
+            return _context.Courses.FirstOrDefault(c => c.Id == id);
         }
 
-        public async Task<IEnumerable<Course>> GetAllCourses()
+        public async Task<IEnumerable<Course> >GetAllCourses()
         {
-            return _context.Courses;
-        }
-        public async Task<IEnumerable<CourseDto>> GetAllCoursesWithModules()
-        {
-            var coursesWithModules = await _context.Courses
-                .Include(c => c.Modules)
-                .ToListAsync();
-
-            var courseDto = coursesWithModules
-                .SelectMany(course => course.Modules.Select(module => new CourseDto
-                {
-                    Id = course.Id,
-                    CourseName = course.CourseName,
-                    CourseDescription = course.CourseDescription,
-                    StartDate = course.StartDate,
-                    EndDate = course.EndDate,
-                    ModuleId = module.Id,
-                    ModuleName = module.ModuleName
-
-                }))
-                .ToList();
-
-            return courseDto;
-        }
-        public async Task<IEnumerable<ModuleDto>> GetCourseByIdAsync(int courseId)
-        {
-            var modules = await _context.Courses
-                .Include(c => c.Modules)
-                .FirstOrDefaultAsync(c => c.Id == courseId);
-            var modulesDto = _mapper.Map<List<ModuleDto>>(modules.Modules);
-            return modulesDto;
-        }
-
-
-        public async Task<IEnumerable<Module>> GetModulesByCourseAsync(int courseId)
-        {
-            return await _context.Modules
-                .Where(m => m.CourseId == courseId)
-                .ToListAsync();
-        }
-
-
-        public async Task<IEnumerable<Activity>> GetActivitiesByModuleAsync(int moduleId)
-        {
-            return await _context.Activities
-                .Where(a => a.ModuleId == moduleId)
-                .ToListAsync();
+            return  _context.Courses;
         }
         public async Task<IEnumerable<CourseDto>> GetAllCoursesWithModules()
         {
@@ -142,3 +94,4 @@ namespace LMSGroup3.Server.Repositories
         //}
     }
 }
+
