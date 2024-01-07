@@ -27,7 +27,7 @@ namespace LMSGroup3.Client.Teacher
         {
             selectedCourseId = courseId;
             modules = await HttpClient.GetFromJsonAsync<List<ModuleDto>>($"api/Course/GetModulesByCourse/{courseId}");
-            StateHasChanged();
+            StateHasChanged(); 
         }
 
         private async Task LoadActivities(int moduleId)
@@ -35,7 +35,13 @@ namespace LMSGroup3.Client.Teacher
             selectedModuleId = moduleId;
             moduleWithActivities = modules.FirstOrDefault(m => m.Id == moduleId);
             activities = await HttpClient.GetFromJsonAsync<List<ActivityDto>>($"api/Course/GetActivitiesByModule/{moduleId}");
-            StateHasChanged();
+            StateHasChanged(); 
         }
+        //private List<CourseDto> courses;
+
+        //protected override async Task OnInitializedAsync()
+        //{
+        //    courses = await HttpClient.GetFromJsonAsync<List<CourseDto>>("api/Course/GetCourses");
+        //}
     }
 }

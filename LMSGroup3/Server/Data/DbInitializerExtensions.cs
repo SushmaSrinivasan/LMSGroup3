@@ -2,6 +2,7 @@
 
 namespace LMSGroup3.Server.Data
 {
+    //test merge initializer
     public static class DbInitializerExtensions
     {
         public static async Task SeedDataAsync(this IApplicationBuilder app)

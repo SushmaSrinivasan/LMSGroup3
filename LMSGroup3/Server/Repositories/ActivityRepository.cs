@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LMSGroup3.Server.Repositories
 {
-    public class ActivityRepository : IActivityRepository
+    public class ActivityRepository: IActivityRepository
     {
         private readonly ApplicationDbContext _context;
         public ActivityRepository(ApplicationDbContext context)

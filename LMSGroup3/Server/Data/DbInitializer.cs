@@ -11,6 +11,7 @@ namespace LMSGroup3.Server.Data
         private static RoleManager<IdentityRole> roleManager = default!;
         private static UserManager<ApplicationUser> userManager = default!;
 
+        //test merge
         //creating roles
         private static readonly List<IdentityRole> Roles = new()
         {

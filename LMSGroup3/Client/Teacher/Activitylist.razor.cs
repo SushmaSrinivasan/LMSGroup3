@@ -4,7 +4,7 @@ using System.Net.Http.Json;
 
 namespace LMSGroup3.Client.Teacher
 {
-    public partial class Activitylist : ComponentBase
+    public partial class Activitylist
     {
         private List<ActivityDto> activities;
         private int moduleId = 5;

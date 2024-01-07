@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LMSGroup3.Server.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class CourseController : ControllerBase
@@ -38,6 +38,20 @@ namespace LMSGroup3.Server.Controllers
 
             return Ok(courseDtos);
         }
+        //[HttpGet]
+        //[Route("GetModulesByCourse")]
+        //public async Task<ActionResult<IEnumerable<ModuleDto>>> GetModulesByCourse(int courseId)
+        //{
+        //    var moduleDto = await _courseRepository.GetCourseByIdAsync(courseId);
+
+        //    if (moduleDto == null)
+        //    {
+        //        return NotFound("Course not found");
+        //    }
+
+        //    return Ok(moduleDto);
+        //}
+        
 
         [HttpGet]
         [Route("GetModulesByCourse/{courseId}")]
@@ -53,7 +67,7 @@ namespace LMSGroup3.Server.Controllers
             var moduleDtos = _mapper.Map<List<ModuleDto>>(modules);
             return Ok(moduleDtos);
         }
-
+       
 
         [HttpGet]
         [Route("GetActivitiesByModule/{moduleId}")]
@@ -74,3 +88,5 @@ namespace LMSGroup3.Server.Controllers
     }
 
 }
+
+

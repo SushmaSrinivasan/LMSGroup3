@@ -27,10 +27,11 @@ namespace LMSGroup3.Server.Controllers
             //int moduleId = 1;
             var activities = await _activityRepository.GetActivitiesByModuleId(moduleId);
 
-            // var activities = await _activityRepository.GetAllActivities();
+           // var activities = await _activityRepository.GetAllActivities();
             var activityDtos = _mapper.Map<List<ActivityDto>>(activities);
 
             return Ok(activityDtos);
         }
     }
 }
+
