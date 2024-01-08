@@ -19,9 +19,20 @@ namespace LMSGroup3.Server.Data
         new IdentityRole { Name = "Student" }
         };
 
+        private static async Task AddUserToRoleAsync(ApplicationUser user, string roleName)
+        {
+            if (!await userManager.IsInRoleAsync(user, roleName))
+            {
+                var result = await userManager.AddToRoleAsync(user, roleName);
+
+                if (!result.Succeeded) throw new Exception(string.Join("\n", result.Errors));
+            }
+        }
+
         public static async Task InitAsync(ApplicationDbContext db, IServiceProvider services)
         {
             roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+            userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
 
             // adding roles if it does not exist already
             foreach (var role in Roles)
@@ -43,7 +54,33 @@ namespace LMSGroup3.Server.Data
             await db.AddRangeAsync(courses);
             await db.SaveChangesAsync();
 
+            // Adding a superuser with the "Teacher" role
+            var superuser = await AddAccountAsync("superuser@superuser.com", "Super", "User", "P@55w.rd");
+            await AddUserToRoleAsync(superuser, "Teacher");
         }
+
+        private static async Task<ApplicationUser> AddAccountAsync(string accountEmail, string fName, string lName, string pWord)
+        {
+            var found = await userManager.FindByNameAsync(accountEmail);
+
+            if (found != null) return found; // returns existing user if found
+
+            var user = new ApplicationUser
+            {
+                UserName = accountEmail,
+                Email = accountEmail,
+                FirstName = fName,
+                LastName = lName,
+                EmailConfirmed = true
+            };
+
+            var result = await userManager.CreateAsync(user, pWord);
+
+            if (!result.Succeeded) throw new Exception(string.Join("\n", result.Errors));
+
+            return user;
+        }
+
         // course names example
         private static string[] CourseNames = { "C#", "Javascript", "Blazor" };
 
