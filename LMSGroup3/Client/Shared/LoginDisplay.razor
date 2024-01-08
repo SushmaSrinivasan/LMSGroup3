@@ -2,16 +2,44 @@
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @inject NavigationManager Navigation
 
-<AuthorizeView>
+<AuthorizeView Roles="Teacher">
     <Authorized>
         <a href="authentication/profile">Hello, @context.User.Identity?.Name!</a>
         <button class="nav-link btn btn-link" @onclick="BeginLogOut">Log out</button>
-        <a href="authentication/register">Register</a>
+        <button class="nav-link btn btn-link"><a href="authentication/register">Register New User</a></button>
     </Authorized>
+</AuthorizeView>
+
+<AuthorizeView Roles="Student">
+    <Authorized>
+        <a href="authentication/profile">Hello, @context.User.Identity?.Name!</a>
+        <button class="nav-link btn btn-link" @onclick="BeginLogOut">Log out</button>
+    </Authorized>
+</AuthorizeView>
+
+<AuthorizeView>
     <NotAuthorized>
         <a href="authentication/login">Log in</a>
     </NotAuthorized>
 </AuthorizeView>
+
+@* <AuthorizeView Roles="Teacher, Student">
+    <Authorized>
+        <a href="authentication/profile">Hello, @context.User.Identity?.Name!</a>
+        <button class="nav-link btn btn-link" @onclick="BeginLogOut">Log out</button>
+
+        <!-- Nested Authorization, Content visible only to users with the Teacher role -->
+        <AuthorizeView Roles="Teacher">
+            <Authorized Context="TeacherView">
+                <p>Welcome, Teacher!</p>
+                <a href="authentication/register">Register</a>
+            </Authorized>
+        </AuthorizeView>
+    </Authorized>
+    <NotAuthorized>
+        <a href="authentication/login">Log in</a>
+    </NotAuthorized>
+</AuthorizeView> *@
 
 @code{
     private void BeginLogOut()

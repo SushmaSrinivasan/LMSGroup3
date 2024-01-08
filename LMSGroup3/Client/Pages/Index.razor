@@ -1,5 +1,19 @@
 ﻿@page "/"
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 
 <PageTitle>Index</PageTitle>
 
 <h1>Welcome to Lexicon LMS</h1>
+
+<AuthorizeView Roles="Teacher">
+    <Authorized>
+        <h5>Welcome teacher @context.User.Identity?.Name!</h5>
+    </Authorized>
+</AuthorizeView>
+
+<AuthorizeView Roles="Student">
+    <Authorized>
+        <h5>Welcome student @context.User.Identity?.Name!</h5>
+    </Authorized>
+</AuthorizeView>
