@@ -1,0 +1,50 @@
+﻿@* <h3>Moduleslist</h3> *@
+@page "/modules"
+@inject HttpClient HttpClient
+@inherits ComponentBase
+
+@if (modules == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                @* <th>ID</th> *@
+                <th>Module Name</th>
+                @* <th>Start Date</th> *@
+                <th>ModuleName</th> 
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var module in modules)
+            {
+                <tr>
+                    @* <td>@course.Id</td> *@
+                    <td>@module.Id</td>
+                    <td>@module.ModuleName</td>
+
+                    @* <td>@module.StartDate.ToShortDateString()</td> *@
+                    @* <td>@course.ModuleId</td> *@
+                    @* <td>@course.ModuleName</td> *@
+
+
+                </tr>
+                <tr>
+                    <authorizeview>
+                        <authorized>
+                            @* <a class="nav-link btn btn-link float-right" href="modules?courseId=@module.Id">Modules</a> *@
+
+                            <a class="nav-link btn btn-link float-right" href="activities?moduleId=@module.Id">Activity</a>
+
+                            @* <a class="nav-link btn btn-link" href="activities">Activity</a> *@
+                        </authorized>
+                    </authorizeview>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

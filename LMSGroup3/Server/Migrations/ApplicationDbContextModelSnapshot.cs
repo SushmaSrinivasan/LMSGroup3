@@ -178,9 +178,7 @@ namespace LMSGroup3.Server.Migrations
                     b.Property<int>("ActivityTypeId")
                         .HasColumnType("int");
 
-
-                    b.Property<DateTime?>("EndDate")
-
+                    b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("ModuleId")
@@ -267,6 +265,10 @@ namespace LMSGroup3.Server.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
