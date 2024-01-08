@@ -1,10 +1,12 @@
-﻿@page "/moduleadd"
+﻿@page "/ModuleAdd/{CourseId:int}"
 @using Microsoft.AspNetCore.Authorization
 @using LMSGroup3.Shared.Domain.DTOs
 @inject HttpClient HttpClient
 
 
 <h3>Add Modules</h3>
+
+responseData:@responseData<br />
 
 @if (!string.IsNullOrEmpty(ErrorMessage))
 {
@@ -13,6 +15,25 @@
     </div>
 }
 
+<table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Course Name</th>
+                <th>Course Description</th>
+                <th>Start Date</th>               
+                @* <th>End Date</th> *@
+
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>@course.CourseName</td>
+            <td>@course.CourseDescription</td>
+            <td>@course.StartDate.ToShortDateString()</td>
+            
+        </tr>
+        </tbody>
+ </table>
 
 <section class="module-add">
 
@@ -48,7 +69,7 @@
                 </tr>
             </tbody>
          </table>
-        @* <a href="@($"/courses/{CourseId}/modules")" class="btn btn-outline-primary">Back to Module list</a>&nbsp;
-        <button type="submit" class="btn btn-primary me-1">Add Module</button> *@
+         <a href="@($"/courses/{CourseId}/modules")" class="btn btn-outline-primary">Back to Course list</a>&nbsp;
+        <button type="submit" class="btn btn-primary me-1">Add Module</button> 
     </EditForm>
 </section>

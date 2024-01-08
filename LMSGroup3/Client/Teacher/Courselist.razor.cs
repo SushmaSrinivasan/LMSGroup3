@@ -1,4 +1,9 @@
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using System.Reflection;
+using System.Text.Json;
+using System.Threading.Tasks;
 using LMSGroup3.Shared.Domain.DTOs;
 using Microsoft.AspNetCore.Components;
 
@@ -37,6 +42,9 @@ namespace LMSGroup3.Client.Teacher
             activities = await HttpClient.GetFromJsonAsync<List<ActivityDto>>($"api/Course/GetActivitiesByModule/{moduleId}");
             StateHasChanged(); 
         }
+
+       
+        
         //private List<CourseDto> courses;
 
         //protected override async Task OnInitializedAsync()

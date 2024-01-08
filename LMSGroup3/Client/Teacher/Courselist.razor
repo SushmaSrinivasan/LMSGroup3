@@ -16,6 +16,7 @@ else
                 <th>Course Name</th>
                 <th>Course Description</th>
                 <th>Start Date</th>
+                <th></th>
                 @* <th>End Date</th> *@
 
             </tr>
@@ -27,7 +28,7 @@ else
                     <td>@course.CourseName</td>
                     <td>@course.CourseDescription</td>
                     <td>@course.StartDate.ToShortDateString()</td>
-                    @* <td>@course.EndDate.ToShortDateString()</td> *@
+                    <td><a href="@($"/ModuleAdd/{course.Id}")" class="btn btn-outline-primary">Add Module</a>&nbsp;</td>
                 </tr>
                 <tr>
                     <authorizeview>
@@ -43,7 +44,9 @@ else
                 {
                     <tr>
                         <td colspan="2">
-                            <h5>Modules for @course.CourseName</h5>
+                            <h5>Modules for @course.CourseName</h5></td>
+                    </tr>
+                            
 
                     <tr>
                         <th>Module Name</th>
@@ -110,9 +113,7 @@ else
                                 <p>Loading modules...</p>
                             </td>
                         </tr>
-                            }
-                    </td>
-                    </tr>
+                            }               
                 }
             }
         </tbody>
