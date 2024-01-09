@@ -1,7 +1,11 @@
 ﻿@page "/courses"
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @inject HttpClient HttpClient
 @inherits ComponentBase
 
+<AuthorizeView Roles="Teacher">
+    <Authorized>
 <h3>Courses</h3>
 
 @if (courses == null)
@@ -118,3 +122,5 @@ else
         </tbody>
     </table>
 }
+    </Authorized>
+</AuthorizeView>
