@@ -7,9 +7,11 @@ namespace LMSGroup3.Server.Models
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public string FullName => FirstName + " " + LastName;
+        public int  UserId { get; set; }
 
         // Not needed to exist in db
         //public string Role { get; set; }
+
 
         // Navigation Property
         public Course Course { get; set; } = default!;
