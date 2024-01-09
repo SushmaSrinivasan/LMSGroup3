@@ -13,5 +13,7 @@ namespace LMSGroup3.Client.Pages
 		{
 			//CourseDto = new CourseDto();  (I am unsure how to get the courses from the database
 		}
+
+
 	}
 }
