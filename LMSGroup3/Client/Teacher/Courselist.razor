@@ -17,6 +17,7 @@ else
                 <th>Course Description</th>
                 <th>Start Date</th>
                 <th></th>
+                <th></th>
                 @* <th>End Date</th> *@
 
             </tr>
@@ -29,6 +30,7 @@ else
                     <td>@course.CourseDescription</td>
                     <td>@course.StartDate.ToShortDateString()</td>
                     <td><a href="@($"/ModuleAdd/{course.Id}")" class="btn btn-outline-primary">Add Module</a>&nbsp;</td>
+                    <td><a href="@($"/ModuleDelete/{course.ModuleId}")" class="btn btn-outline-primary">Delete Module</a>&nbsp</td>
                 </tr>
                 <tr>
                     <authorizeview>

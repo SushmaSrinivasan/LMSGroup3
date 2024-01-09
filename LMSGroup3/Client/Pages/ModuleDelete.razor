@@ -1,45 +1,42 @@
-﻿@page "/ModuleAdd/{CourseId:int}"
+﻿@page "/ModuleDelete/{id:int}"
 @using Microsoft.AspNetCore.Authorization
 @using LMSGroup3.Shared.Domain.DTOs
 @inject HttpClient HttpClient
 
+<h3>Delete Module</h3>
 
-<h3>Add Modules</h3>
-
-
-
-@if (!string.IsNullOrEmpty(ErrorMessage))
+if (!string.IsNullOrEmpty(ErrorMessage))
 {
-    <div class="alert alert-danger" role="alert">
-        @ErrorMessage
-    </div>
+<div class="alert alert-danger" role="alert">
+    @ErrorMessage
+</div>
 }
 
 <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Course Name</th>
-                <th>Course Description</th>
-                <th>Start Date</th>               
-                @* <th>End Date</th> *@
-
-            </tr>
-        </thead>
-        <tbody>
+    <thead>
         <tr>
-            <td>@Course.CourseName</td>
-            <td>@Course.CourseDescription</td>
-            <td>@Course.StartDate.ToShortDateString()</td>
-            
-        </tr>
-        </tbody>
- </table>
+            <th>Course Name</th>
+            <th>Course Description</th>
+            <th>Start Date</th>
+            @* <th>End Date</th> *@
 
-<section class="moduleadd">
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@course.CourseName</td>
+            <td>@course.CourseDescription</td>
+            <td>@course.StartDate.ToShortDateString()</td>
+
+        </tr>
+    </tbody>
+</table>
+
+<section class="moduledelete">
 
     <EditForm Model="@Module" OnValidSubmit="@HandleValidSubmit">
 
-        <DataAnnotationsValidator/>
+        <DataAnnotationsValidator />
 
         <table class="table">
             <thead>
@@ -62,14 +59,14 @@
                     </td>
                     <td scope="row">
                         <InputDate id="StartDate" @bind-Value="Module.StartDate" class="form-control col-md-8"></InputDate>
-                     </td>
+                    </td>
                     <td scope="row">
                         <InputDate id="EndDate" @bind-Value="Module.EndDate" class="form-control col-md-8"></InputDate>
                     </td>
                 </tr>
             </tbody>
-         </table>
-         <a href="@($"/courses")" class="btn btn-outline-primary">Back to Course list</a>&nbsp;
-        <button type="submit" class="btn btn-primary me-1">Add Module</button> 
+        </table>
+        <a href="@($"/courses")" class="btn btn-outline-primary">Back to Course list</a>&nbsp;
+        <button type="submit" class="btn btn-primary me-1">Delete Module</button>
     </EditForm>
 </section>

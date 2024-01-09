@@ -31,5 +31,16 @@ namespace LMSGroup3.Server.Repositories
             return addedEntity.Entity;
 
         }
+
+        //public async Task<Module> RemoveModule(int id, Module? module)
+        //{
+        //    //Module? module = new Module();
+        //     module = await _context.Modules.FirstOrDefaultAsync(m => m.Id == id);
+        //   var removedEntity= await _context.Modules.ExecuteDeleteAsync(module);
+        //    await _context.SaveChangesAsync();
+        //    return removedEntity.Entity;
+        //}
+
+      
     }
 }

@@ -45,8 +45,8 @@ namespace LMSGroup3.Server.Controllers
         public async Task<ActionResult<Module>> AddModule(Module module)
         {
             //var module = _mapper.Map<Module>(module);
-            _moduleRepository.AddModule(module);
-            return Ok(module);
+           await _moduleRepository.AddModule(module);
+            return Ok();
 
         }
     }

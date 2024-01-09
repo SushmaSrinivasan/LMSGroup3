@@ -56,8 +56,15 @@ namespace LMSGroup3.Server.Controllers
         [Route("GetCourse/{courseId}")]
         public async Task<CourseDto> GetCourse(int courseId)
         {
-            var test = _mapper.Map<CourseDto>(_courseRepository.GetCourse(courseId));
-            return test ;
+            var result = _courseRepository.GetCourse(courseId);
+
+            if (result.Status == TaskStatus.RanToCompletion)
+            {
+                var test2 = result.Result;
+                var test = _mapper.Map<CourseDto>(test2);
+                return test;
+            }
+            return null;
         }
 
 

@@ -6,6 +6,7 @@ using static System.Net.WebRequestMethods;
 using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Net.Http.Json;
+using System.Text;
 
 
 namespace LMSGroup3.Client.Pages
@@ -16,9 +17,9 @@ namespace LMSGroup3.Client.Pages
 
         [Inject]
         public NavigationManager NavigationManager { get; set; } = default!;
-        public ModuleDto Module { get; set; }
+        public ModuleDto Module { get; set; } = new ModuleDto();
 
-        public CourseDto course { get; set; }
+        public CourseDto Course { get; set; } = new CourseDto();
 
         public string ErrorMessage = string.Empty;
 
@@ -31,7 +32,7 @@ namespace LMSGroup3.Client.Pages
 
         protected override async Task OnInitializedAsync()
         {
-            var test = await HttpClient.GetFromJsonAsync<CourseDto>($"api/Course/GetCourse/{CourseId}");
+            Course = await HttpClient.GetFromJsonAsync<CourseDto>($"api/Course/GetCourse/{CourseId}");
             base.OnInitialized();
         }
 
@@ -40,12 +41,17 @@ namespace LMSGroup3.Client.Pages
             try
             {
                 Module.CourseId = CourseId;
-                var json = JsonSerializer.Serialize(Module);
-                var httpContent = new StringContent(json, new MediaTypeHeaderValue("application/json"));
-                var response = await HttpClient.PostAsync("api/Module/AddModule", httpContent);
-                if(response.IsSuccessStatusCode)
+                //var json = JsonSerializer.Serialize(Module);
+                using var client = new HttpClient();
+
+                //var httpContent = new StringContent(json, new MediaTypeHeaderValue("application/json"));
+                //var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await client.PostAsJsonAsync($"api/Module/AddModule", Module);
+                
+                                 
+                if (response.IsSuccessStatusCode)
                 {
-                    responseData = await response.Content.ReadAsStringAsync();
+                    //responseData = await response.Content.ReadAsStringAsync();
                     NavigationManager.NavigateTo($"/courses");
                 }
                 else
