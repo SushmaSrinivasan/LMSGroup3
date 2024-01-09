@@ -1,14 +1,12 @@
 ﻿@page "/studentcourses"
-@* @using Microsoft.AspNetCore.Components.Authorization
-@using Microsoft.AspNetCore.Components.WebAssembly.Authentication *@
 @inject HttpClient HttpClient
 @inherits ComponentBase
 
  <AuthorizeView Roles="Student">
     <Authorized>
         <h3>studentcourses</h3>
-
-        @*  @if (courses == null)
+        @context.User.Identity?.Name
+        @*  @if (studentcourses == null)
         {
             <p>Loading...</p>
         }
