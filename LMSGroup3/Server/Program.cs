@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using LMSGroup3.Server;
 using LMSGroup3.Server.Mappings;
+using Microsoft.AspNetCore.Builder;
+using System;
 //using AutoMapper..DependencyInjection;
 
 //using Microsoft./*Extensions.DependencyInjection;*/
@@ -23,11 +25,18 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddIdentityServer()
-    .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
+    .AddApiAuthorization<ApplicationUser, ApplicationDbContext>(
+    options =>
+    {
+        options.IdentityResources["openid"].UserClaims.Add("role");
+        options.ApiResources.Single().UserClaims.Add("role");
+    });
 
 builder.Services.AddAuthentication()
     .AddIdentityServerJwt();
 builder.Services.AddScoped<ICourseRepository, CourseRepository>();
+builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+
 builder.Services.AddScoped<IActivityRepository, ActivityRepository>();
 
 builder.Services.AddControllersWithViews();

@@ -1,7 +1,10 @@
 ﻿using Bogus;
 using LMSGroup3.Server.Models;
 using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
+using System;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace LMSGroup3.Server.Data
 {
@@ -19,9 +22,20 @@ namespace LMSGroup3.Server.Data
         new IdentityRole { Name = "Student" }
         };
 
+        private static async Task AddUserToRoleAsync(ApplicationUser user, string roleName)
+        {
+            if (!await userManager.IsInRoleAsync(user, roleName))
+            {
+                var result = await userManager.AddToRoleAsync(user, roleName);
+
+                if (!result.Succeeded) throw new Exception(string.Join("\n", result.Errors));
+            }
+        }
+
         public static async Task InitAsync(ApplicationDbContext db, IServiceProvider services)
         {
             roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+            userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
 
             // adding roles if it does not exist already
             foreach (var role in Roles)
@@ -43,7 +57,33 @@ namespace LMSGroup3.Server.Data
             await db.AddRangeAsync(courses);
             await db.SaveChangesAsync();
 
+            // Adding a superuser with the "Teacher" role
+            var superuser = await AddAccountAsync("superuser@superuser.com", "Super", "User", "P@55w.rd");
+            await AddUserToRoleAsync(superuser, "Teacher");
         }
+
+        private static async Task<ApplicationUser> AddAccountAsync(string accountEmail, string fName, string lName, string pWord)
+        {
+            var found = await userManager.FindByNameAsync(accountEmail);
+
+            if (found != null) return found; // returns existing user if found
+
+            var user = new ApplicationUser
+            {
+                UserName = accountEmail,
+                Email = accountEmail,
+                FirstName = fName,
+                LastName = lName,
+                EmailConfirmed = true
+            };
+
+            var result = await userManager.CreateAsync(user, pWord);
+
+            if (!result.Succeeded) throw new Exception(string.Join("\n", result.Errors));
+
+            return user;
+        }
+
         // course names example
         private static string[] CourseNames = { "C#", "Javascript", "Blazor" };
 
@@ -88,35 +128,35 @@ namespace LMSGroup3.Server.Data
             };
         }
 
-            //creating a single student
-            private static ApplicationUser GenerateUser()
+        //creating a single student
+        private static ApplicationUser GenerateUser()
+        {
+            var firstname = Faker.Name.FirstName();
+            var lastname = Faker.Name.LastName();
+            var email = Faker.Internet.Email(firstname, lastname);
+            var user = new ApplicationUser
             {
-                var firstname = Faker.Name.FirstName();
-                var lastname = Faker.Name.LastName();
-                var email = Faker.Internet.Email(firstname, lastname);
-                var user = new ApplicationUser
-                {
-                    UserName = $"{firstname} {lastname}",
-                    Email = email,
-                    EmailConfirmed = true,
-                };
-                return user;
-            }
-            //creating modules with start and end date
-            private static List<Models.Module> GenerateModules(DateTime start, DateTime end)
+                UserName = $"{firstname} {lastname}",
+                Email = email,
+                EmailConfirmed = true,
+            };
+            return user;
+        }
+        //creating modules with start and end date
+        private static List<Models.Module> GenerateModules(DateTime start, DateTime end)
+        {
+            var output = new List<Models.Module>();
+            var moduleCount = Faker.Random.Int(1, 4);
+            for (int i = 0; i < moduleCount; i++)
             {
-                var output = new List<Models.Module>();
-                var moduleCount = Faker.Random.Int(1, 4);
-                for (int i = 0; i < moduleCount; i++)
-                {
-                    // create a module with a start date after the previous module's end date
-                    output.Add(GenerateModule(i == 0 ? start : output[i - 1].EndDate));
-                }
-                return output;
+                // create a module with a start date after the previous module's end date
+                output.Add(GenerateModule(i == 0 ? start : output[i - 1].EndDate));
             }
+            return output;
+        }
 
-            //Example module names
-            private static readonly string[] ModuleNames = { "C#", "SQL", "Javascript","EF Core" };
+        //Example module names
+        private static readonly string[] ModuleNames = { "C#", "SQL", "Javascript", "EF Core" };
 
         //Creating a single module
         private static Models.Module GenerateModule(DateTime startDate)
@@ -169,5 +209,5 @@ namespace LMSGroup3.Server.Data
             }
             return activities;
         }
-}
+    }
 }
