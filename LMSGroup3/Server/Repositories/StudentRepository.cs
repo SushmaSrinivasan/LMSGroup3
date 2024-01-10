@@ -6,6 +6,7 @@ using LMSGroup3.Shared.Domain.DTOs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using AutoMapper;
+using LMSGroup3.Shared.DTOs;
 namespace LMSGroup3.Server.Repositories
 {
     public class StudentRepository : IStudentRepository
@@ -26,7 +27,7 @@ namespace LMSGroup3.Server.Repositories
 
             return course;
         }
-        public async Task <IEnumerable<StudentCoursesDto>> GetStudentsInSameCourse(string studentId)
+        public async Task<IEnumerable<ApplicationUserDto>> GetStudentsInSameCourse(string studentId)
         {
             // Get the CourseId of the given student
             var courseId = _context.StudentCourses
@@ -37,7 +38,7 @@ namespace LMSGroup3.Server.Repositories
             if (courseId == 0)
             {
                 // CourseId not found for the given student
-                return Enumerable.Empty<StudentCoursesDto>();
+                return Enumerable.Empty<ApplicationUserDto>();
             }
 
             // Get the StudentIds of students in the same course
@@ -48,12 +49,12 @@ namespace LMSGroup3.Server.Repositories
 
             // Get the details of students in the same course
             var studentsInSameCourse = _context.Users
-                .Where(u => studentIdsInSameCourse.Contains(u.Id) && u.Role == "Student")
-                .Select(u => new StudentCoursesDto
+                .Where(u => studentIdsInSameCourse.Contains(u.Id))
+                .Select(u => new ApplicationUserDto
                 {
-                    //Id = u.Id,
-                    StudentId = u.Id,
-                    CourseId = courseId
+                    FirstName = u.FirstName,
+                    LastName = u.LastName,
+                    Email = u.Email
                 })
                 .ToList();
 
