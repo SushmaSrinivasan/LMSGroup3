@@ -92,6 +92,15 @@ namespace LMSGroup3.Server.Repositories
 
         //    //return courses;
         //}
+        public async Task<Course> GetCourseForStudent(string studentId)
+        {
+            var course = _context.StudentCourses
+                .Where(sc => sc.StudentId == studentId)
+                .Select(sc => sc.Course)
+                .FirstOrDefault();
+
+            return course;
+        }
     }
 }
 
