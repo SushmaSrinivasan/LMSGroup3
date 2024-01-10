@@ -1,4 +1,4 @@
-﻿namespace LMSGroup3.Server.Models
+﻿namespace LMSGroup3.Shared.Entities
 {
     public class ActivityType
     {

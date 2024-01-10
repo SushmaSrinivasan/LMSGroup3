@@ -1,4 +1,4 @@
-﻿using LMSGroup3.Server.Models;
+﻿using LMSGroup3.Shared.Entities;
 
 namespace LMSGroup3.Server.Repositories
 {
