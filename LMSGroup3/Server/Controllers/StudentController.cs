@@ -3,6 +3,7 @@ using LMSGroup3.Server.Repositories;
 using LMSGroup3.Shared.Domain.DTOs;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using LMSGroup3.Shared.DTOs;
 
 namespace LMSGroup3.Server.Controllers
 {
@@ -36,16 +37,16 @@ namespace LMSGroup3.Server.Controllers
         }
         [HttpGet]
         [Route("GetStudentsInSameCourse/{studentId}")]
-        public ActionResult<IEnumerable<StudentCoursesDto>> GetStudentsInSameCourse(string studentId)
+        public async Task<ActionResult<IEnumerable<ApplicationUserDto>>> GetStudentsInSameCourse(string studentId)
         {
-            var studentsInSameCourse = _studentRepository.GetStudentsInSameCourse(studentId);
+            var studentsInSameCourse = await _studentRepository.GetStudentsInSameCourse(studentId);
 
-            if (studentsInSameCourse == null )
+            if (studentsInSameCourse == null || !studentsInSameCourse.Any())
             {
                 return NotFound($"No students found in the same course as student with ID {studentId}");
             }
 
-            var studentsDto = _mapper.Map<IEnumerable<StudentCoursesDto>>(studentsInSameCourse);
+            var studentsDto = _mapper.Map<IEnumerable<ApplicationUserDto>>(studentsInSameCourse);
 
             return Ok(studentsDto);
         }

@@ -69,21 +69,7 @@ namespace LMSGroup3.Server.Controllers
             var activityDtos = _mapper.Map<List<ActivityDto>>(activities);
             return Ok(activityDtos);
         }
-        //[HttpGet]
-        //[Route("GetCourseForStudent/{studentId}")]
-        //public async Task<ActionResult<CourseDto>> GetCourseForStudent(string studentId)
-        //{
-        //    var studentCourse = _courseRepository.GetCourseForStudent(studentId);
-
-        //    if (studentCourse == null)
-        //    {
-        //        return NotFound($"No course found for student with ID {studentId}");
-        //    }
-
-        //    var courseDto = _mapper.Map<CourseDto>(studentCourse.Result);
-
-        //    return Ok(courseDto);
-        //}
+       
 
     }
 
