@@ -1,7 +1,10 @@
 ﻿using Bogus;
-using LMSGroup3.Server.Models;
+using LMSGroup3.Shared.Entities;
 using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
+using System;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace LMSGroup3.Server.Data
 {
@@ -125,41 +128,41 @@ namespace LMSGroup3.Server.Data
             };
         }
 
-            //creating a single student
-            private static ApplicationUser GenerateUser()
+        //creating a single student
+        private static ApplicationUser GenerateUser()
+        {
+            var firstname = Faker.Name.FirstName();
+            var lastname = Faker.Name.LastName();
+            var email = Faker.Internet.Email(firstname, lastname);
+            var user = new ApplicationUser
             {
-                var firstname = Faker.Name.FirstName();
-                var lastname = Faker.Name.LastName();
-                var email = Faker.Internet.Email(firstname, lastname);
-                var user = new ApplicationUser
-                {
-                    UserName = $"{firstname} {lastname}",
-                    Email = email,
-                    EmailConfirmed = true,
-                };
-                return user;
-            }
-            //creating modules with start and end date
-            private static List<Models.Module> GenerateModules(DateTime start, DateTime end)
+                UserName = $"{firstname} {lastname}",
+                Email = email,
+                EmailConfirmed = true,
+            };
+            return user;
+        }
+        //creating modules with start and end date
+        private static List<Shared.Entities.Module> GenerateModules(DateTime start, DateTime end)
+        {
+            var output = new List<Shared.Entities.Module>();
+            var moduleCount = Faker.Random.Int(1, 4);
+            for (int i = 0; i < moduleCount; i++)
             {
-                var output = new List<Models.Module>();
-                var moduleCount = Faker.Random.Int(1, 4);
-                for (int i = 0; i < moduleCount; i++)
-                {
-                    // create a module with a start date after the previous module's end date
-                    output.Add(GenerateModule(i == 0 ? start : output[i - 1].EndDate));
-                }
-                return output;
+                // create a module with a start date after the previous module's end date
+                output.Add(GenerateModule(i == 0 ? start : output[i - 1].EndDate));
             }
+            return output;
+        }
 
-            //Example module names
-            private static readonly string[] ModuleNames = { "C#", "SQL", "Javascript","EF Core" };
+        //Example module names
+        private static readonly string[] ModuleNames = { "C#", "SQL", "Javascript", "EF Core" };
 
         //Creating a single module
-        private static Models.Module GenerateModule(DateTime startDate)
+        private static Shared.Entities.Module GenerateModule(DateTime startDate)
         {
             var endDate = Faker.Date.Soon(4);
-            return new Models.Module
+            return new Shared.Entities.Module
             {
                 ModuleName = ModuleNames[Faker.Random.Int(0, ModuleNames.Length - 1)],
                 ModuleDescription = Faker.Lorem.Sentence(),
@@ -206,5 +209,5 @@ namespace LMSGroup3.Server.Data
             }
             return activities;
         }
-}
+    }
 }
