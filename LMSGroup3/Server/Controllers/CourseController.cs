@@ -9,7 +9,7 @@ namespace LMSGroup3.Server.Controllers
 {
     [Authorize]
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/Course")]
     public class CourseController : ControllerBase
     {
         private readonly ICourseRepository _courseRepository;

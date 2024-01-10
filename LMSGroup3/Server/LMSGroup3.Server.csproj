@@ -8,11 +8,32 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Repositories\IModuleRepository.cs" />
+    <Compile Remove="Repositories\ModuleRepository.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="obj\Debug\net7.0\.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" />
+    <Compile Include="obj\Debug\net7.0\LMSGroup3.Server.AssemblyInfo.cs" />
+    <Compile Include="obj\Debug\net7.0\LMSGroup3.Server.GlobalUsings.g.cs" />
+    <Compile Include="obj\Debug\net7.0\LMSGroup3.Server.RazorAssemblyInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="obj\Debug\net7.0\LMSGroup3.Server.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\net7.0\LMSGroup3.Server.sourcelink.json" />
+    <Content Include="obj\LMSGroup3.Server.csproj.nuget.dgspec.json" />
+    <Content Include="obj\project.assets.json" />
+    <Content Include="obj\tempkey.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="Bogus" Version="35.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="7.0.13" />
     <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.11" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +48,104 @@
     <PackageReference Include="Microsoft.AspNetCore.ApiAuthorization.IdentityServer" Version="7.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.13" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="bin\Debug\net7.0\af\" />
+    <Folder Include="bin\Debug\net7.0\ar\" />
+    <Folder Include="bin\Debug\net7.0\az\" />
+    <Folder Include="bin\Debug\net7.0\bg\" />
+    <Folder Include="bin\Debug\net7.0\BlazorDebugProxy\" />
+    <Folder Include="bin\Debug\net7.0\bn-BD\" />
+    <Folder Include="bin\Debug\net7.0\cs\" />
+    <Folder Include="bin\Debug\net7.0\da\" />
+    <Folder Include="bin\Debug\net7.0\de\" />
+    <Folder Include="bin\Debug\net7.0\el\" />
+    <Folder Include="bin\Debug\net7.0\es\" />
+    <Folder Include="bin\Debug\net7.0\fa\" />
+    <Folder Include="bin\Debug\net7.0\fi-FI\" />
+    <Folder Include="bin\Debug\net7.0\fr-BE\" />
+    <Folder Include="bin\Debug\net7.0\fr\" />
+    <Folder Include="bin\Debug\net7.0\he\" />
+    <Folder Include="bin\Debug\net7.0\hr\" />
+    <Folder Include="bin\Debug\net7.0\hu\" />
+    <Folder Include="bin\Debug\net7.0\hy\" />
+    <Folder Include="bin\Debug\net7.0\id\" />
+    <Folder Include="bin\Debug\net7.0\is\" />
+    <Folder Include="bin\Debug\net7.0\it\" />
+    <Folder Include="bin\Debug\net7.0\ja\" />
+    <Folder Include="bin\Debug\net7.0\ko-KR\" />
+    <Folder Include="bin\Debug\net7.0\ko\" />
+    <Folder Include="bin\Debug\net7.0\ku\" />
+    <Folder Include="bin\Debug\net7.0\lv\" />
+    <Folder Include="bin\Debug\net7.0\ms-MY\" />
+    <Folder Include="bin\Debug\net7.0\mt\" />
+    <Folder Include="bin\Debug\net7.0\nb-NO\" />
+    <Folder Include="bin\Debug\net7.0\nb\" />
+    <Folder Include="bin\Debug\net7.0\nl\" />
+    <Folder Include="bin\Debug\net7.0\pl\" />
+    <Folder Include="bin\Debug\net7.0\pt-BR\" />
+    <Folder Include="bin\Debug\net7.0\pt\" />
+    <Folder Include="bin\Debug\net7.0\ro\" />
+    <Folder Include="bin\Debug\net7.0\runtimes\alpine-arm64\native\" />
+    <Folder Include="bin\Debug\net7.0\runtimes\alpine-arm\native\" />
+    <Folder Include="bin\Debug\net7.0\runtimes\alpine-x64\native\" />
+    <Folder Include="bin\Debug\net7.0\runtimes\browser-wasm\nativeassets\net7.0\" />
+    <Folder Include="bin\Debug\net7.0\runtimes\linux-arm64\native\" />
+    <Folder Include="bin\Debug\net7.0\runtimes\linux-armel\native\" />
+    <Folder Include="bin\Debug\net7.0\runtimes\linux-arm\native\" />
+    <Folder Include="bin\Debug\net7.0\runtimes\linux-mips64\native\" />
+    <Folder Include="bin\Debug\net7.0\runtimes\linux-musl-arm64\native\" />
+    <Folder Include="bin\Debug\net7.0\runtimes\linux-musl-arm\native\" />
+    <Folder Include="bin\Debug\net7.0\runtimes\linux-musl-x64\native\" />
+    <Folder Include="bin\Debug\net7.0\runtimes\linux-ppc64le\native\" />
+    <Folder Include="bin\Debug\net7.0\runtimes\linux-s390x\native\" />
+    <Folder Include="bin\Debug\net7.0\runtimes\linux-x64\native\" />
+    <Folder Include="bin\Debug\net7.0\runtimes\linux-x86\native\" />
+    <Folder Include="bin\Debug\net7.0\runtimes\maccatalyst-arm64\native\" />
+    <Folder Include="bin\Debug\net7.0\runtimes\maccatalyst-x64\native\" />
+    <Folder Include="bin\Debug\net7.0\runtimes\osx-arm64\native\" />
+    <Folder Include="bin\Debug\net7.0\runtimes\osx-x64\native\" />
+    <Folder Include="bin\Debug\net7.0\runtimes\unix\lib\net6.0\" />
+    <Folder Include="bin\Debug\net7.0\runtimes\win-arm64\native\" />
+    <Folder Include="bin\Debug\net7.0\runtimes\win-arm\native\" />
+    <Folder Include="bin\Debug\net7.0\runtimes\win-x64\native\" />
+    <Folder Include="bin\Debug\net7.0\runtimes\win-x86\native\" />
+    <Folder Include="bin\Debug\net7.0\runtimes\win\lib\net6.0\" />
+    <Folder Include="bin\Debug\net7.0\ru\" />
+    <Folder Include="bin\Debug\net7.0\sk\" />
+    <Folder Include="bin\Debug\net7.0\sl\" />
+    <Folder Include="bin\Debug\net7.0\sr-Latn\" />
+    <Folder Include="bin\Debug\net7.0\sr\" />
+    <Folder Include="bin\Debug\net7.0\sv\" />
+    <Folder Include="bin\Debug\net7.0\th-TH\" />
+    <Folder Include="bin\Debug\net7.0\tr\" />
+    <Folder Include="bin\Debug\net7.0\uk\" />
+    <Folder Include="bin\Debug\net7.0\uz-Cyrl-UZ\" />
+    <Folder Include="bin\Debug\net7.0\uz-Latn-UZ\" />
+    <Folder Include="bin\Debug\net7.0\vi\" />
+    <Folder Include="bin\Debug\net7.0\zh-CN\" />
+    <Folder Include="bin\Debug\net7.0\zh-Hans\" />
+    <Folder Include="bin\Debug\net7.0\zh-Hant\" />
+    <Folder Include="obj\Debug\net7.0\refint\" />
+    <Folder Include="obj\Debug\net7.0\ref\" />
+    <Folder Include="obj\Debug\net7.0\staticwebassets\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="obj\Debug\net7.0\apphost.exe" />
+    <None Include="obj\Debug\net7.0\LMSGroup3.Server.AssemblyInfoInputs.cache" />
+    <None Include="obj\Debug\net7.0\LMSGroup3.Server.assets.cache" />
+    <None Include="obj\Debug\net7.0\LMSGroup3.Server.csproj.AssemblyReference.cache" />
+    <None Include="obj\Debug\net7.0\LMSGroup3.Server.csproj.BuildWithSkipAnalyzers" />
+    <None Include="obj\Debug\net7.0\LMSGroup3.Server.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\net7.0\LMSGroup3.Server.GeneratedMSBuildEditorConfig.editorconfig" />
+    <None Include="obj\Debug\net7.0\LMSGroup3.Server.MvcApplicationPartsAssemblyInfo.cache" />
+    <None Include="obj\Debug\net7.0\LMSGroup3.Server.RazorAssemblyInfo.cache" />
+    <None Include="obj\Debug\net7.0\project.razor.vs.bin" />
+    <None Include="obj\LMSGroup3.Server.csproj.nuget.g.props" />
+    <None Include="obj\LMSGroup3.Server.csproj.nuget.g.targets" />
+    <None Include="obj\project.nuget.cache" />
   </ItemGroup>
 
 </Project>

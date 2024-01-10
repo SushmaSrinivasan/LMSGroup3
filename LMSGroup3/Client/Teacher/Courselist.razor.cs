@@ -38,7 +38,7 @@ namespace LMSGroup3.Client.Teacher
         private async Task LoadActivities(int moduleId)
         {
             selectedModuleId = moduleId;
-            moduleWithActivities = modules.FirstOrDefault(m => m.Id == moduleId);
+            moduleWithActivities = modules.FirstOrDefault(m => m.ModuleId == moduleId);
             activities = await HttpClient.GetFromJsonAsync<List<ActivityDto>>($"api/Course/GetActivitiesByModule/{moduleId}");
             StateHasChanged(); 
         }

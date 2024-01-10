@@ -5,14 +5,35 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>e81422a7-dcd5-4ce0-8a36-c9ab054d57dd</UserSecretsId>
+	<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Pages\ModuleDelete.razor.cs" />
+    <Compile Include="obj\Debug\net7.0\.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" />
+    <Compile Include="obj\Debug\net7.0\generated\Microsoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\App_razor.g.cs" />
+    <Compile Include="obj\Debug\net7.0\generated\Microsoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Pages_Authentication_razor.g.cs" />
+    <Compile Include="obj\Debug\net7.0\generated\Microsoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Pages_Index_razor.g.cs" />
+    <Compile Include="obj\Debug\net7.0\generated\Microsoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Pages_ModuleAdd_razor.g.cs" />
+    <Compile Include="obj\Debug\net7.0\generated\Microsoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Pages_ModuleDelete_razor.g.cs" />
+    <Compile Include="obj\Debug\net7.0\generated\Microsoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Pages_ModuleUpdate_razor.g.cs" />
+    <Compile Include="obj\Debug\net7.0\generated\Microsoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Shared_LoginDisplay_razor.g.cs" />
+    <Compile Include="obj\Debug\net7.0\generated\Microsoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Shared_MainLayout_razor.g.cs" />
+    <Compile Include="obj\Debug\net7.0\generated\Microsoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Shared_NavMenu_razor.g.cs" />
+    <Compile Include="obj\Debug\net7.0\generated\Microsoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Shared_RedirectToLogin_razor.g.cs" />
+    <Compile Include="obj\Debug\net7.0\generated\Microsoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Shared_SurveyPrompt_razor.g.cs" />
+    <Compile Include="obj\Debug\net7.0\generated\Microsoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Teacher_Activitylist_razor.g.cs" />
+    <Compile Include="obj\Debug\net7.0\generated\Microsoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Teacher_Courselist_razor.g.cs" />
+    <Compile Include="obj\Debug\net7.0\generated\Microsoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\Teacher_Modulelist_razor.g.cs" />
+    <Compile Include="obj\Debug\net7.0\generated\Microsoft.NET.Sdk.Razor.SourceGenerators\Microsoft.NET.Sdk.Razor.SourceGenerators.RazorSourceGenerator\_Imports_razor.g.cs" />
+    <Compile Include="obj\Debug\net7.0\LMSGroup3.Client.AssemblyInfo.cs" />
+    <Compile Include="obj\Debug\net7.0\LMSGroup3.Client.GlobalUsings.g.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="Pages\ModuleDelete.razor" />
+    <Content Include="obj\Debug\net7.0\LMSGroup3.Client.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\net7.0\LMSGroup3.Client.sourcelink.json" />
+    <Content Include="obj\LMSGroup3.Client.csproj.nuget.dgspec.json" />
+    <Content Include="obj\project.assets.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +51,31 @@
     <Content Update="Teacher\Activitylist.razor">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="bin\Debug\net7.0\wwwroot\_framework\" />
+    <Folder Include="obj\Debug\net7.0\compressed\" />
+    <Folder Include="obj\Debug\net7.0\refint\" />
+    <Folder Include="obj\Debug\net7.0\ref\" />
+    <Folder Include="obj\Debug\net7.0\scopedcss\bundle\" />
+    <Folder Include="obj\Debug\net7.0\scopedcss\projectbundle\" />
+    <Folder Include="obj\Debug\net7.0\scopedcss\Shared\" />
+    <Folder Include="obj\Debug\net7.0\staticwebassets\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="obj\Debug\net7.0\LMSGroup3.Client.AssemblyInfoInputs.cache" />
+    <None Include="obj\Debug\net7.0\LMSGroup3.Client.assets.cache" />
+    <None Include="obj\Debug\net7.0\LMSGroup3.Client.csproj.AssemblyReference.cache" />
+    <None Include="obj\Debug\net7.0\LMSGroup3.Client.csproj.BuildWithSkipAnalyzers" />
+    <None Include="obj\Debug\net7.0\LMSGroup3.Client.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\net7.0\LMSGroup3.Client.GeneratedMSBuildEditorConfig.editorconfig" />
+    <None Include="obj\Debug\net7.0\LMSGroup3.Client.MvcApplicationPartsAssemblyInfo.cache" />
+    <None Include="obj\Debug\net7.0\project.razor.vs.bin" />
+    <None Include="obj\LMSGroup3.Client.csproj.nuget.g.props" />
+    <None Include="obj\LMSGroup3.Client.csproj.nuget.g.targets" />
+    <None Include="obj\project.nuget.cache" />
   </ItemGroup>
 
 </Project>

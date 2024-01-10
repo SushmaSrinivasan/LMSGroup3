@@ -18,6 +18,7 @@ else
                 <th>Start Date</th>
                 <th></th>
                 <th></th>
+                <th></th>
                 @* <th>End Date</th> *@
 
             </tr>
@@ -30,6 +31,7 @@ else
                     <td>@course.CourseDescription</td>
                     <td>@course.StartDate.ToShortDateString()</td>
                     <td><a href="@($"/ModuleAdd/{course.Id}")" class="btn btn-outline-primary">Add Module</a>&nbsp;</td>
+                    <td><a href="@($"/ModuleUpdate/{course.ModuleId}")" class="btn btn-outline-primary">Edit Module</a>&nbsp</td>
                     <td><a href="@($"/ModuleDelete/{course.ModuleId}")" class="btn btn-outline-primary">Delete Module</a>&nbsp</td>
                 </tr>
                 <tr>
@@ -67,10 +69,10 @@ else
                                 <td>@module.StartDate.ToShortDateString()</td>
                                 <td>@module.EndDate.ToShortDateString()</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary float-right" @onclick="() => LoadActivities(module.Id)">Activities</button>
+                                    <button type="button" class="btn btn-primary float-right" @onclick="() => LoadActivities(module.ModuleId)">Activities</button>
                                 </td>
                             </tr>
-                                    @if (moduleWithActivities != null && moduleWithActivities.Id == module.Id)
+                                    @if (moduleWithActivities != null && moduleWithActivities.ModuleId == module.ModuleId)
                                     {
                                 <tr>
                                     <td colspan="5">

@@ -1,70 +1,53 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using LMSGroup3.Shared.Domain.DTOs;
-using System.Reflection;
+﻿using LMSGroup3.Shared.Domain.DTOs;
 using Microsoft.AspNetCore.Components;
 using static System.Net.WebRequestMethods;
 using System.Net.Http.Headers;
 using System.Text.Json;
-using System.Net.Http.Json;
-using System.Text;
+using System.Net.WebSockets;
+using LMSGroup3.Client.Helpers;
+using LMSGroup3.Client.Services;
+using System.Reflection;
 
-
-namespace LMSGroup3.Client.Pages
+namespace LexiconLMS.Client.Pages
 {
-    //[Authorize(Roles = "Teacher")]
     public partial class ModuleAdd : ComponentBase
     {
-
         [Inject]
         public NavigationManager NavigationManager { get; set; } = default!;
-        public ModuleDto Module { get; set; } = new ModuleDto();
 
-        public CourseDto Course { get; set; } = new CourseDto();
-
-        public string ErrorMessage = string.Empty;
+        [Inject]
+        public IGenericDataService GenericDataService { get; set; } = default!;
 
         [Parameter]
         public int CourseId { get; set; }
 
-        public string responseData = string.Empty;
+        public ModuleDto Module { get; set; } = new ModuleDto();
 
-      
+        public string ErrorMessage { get; set; } = string.Empty;
 
         protected override async Task OnInitializedAsync()
         {
-            Course = await HttpClient.GetFromJsonAsync<CourseDto>($"api/Course/GetCourse/{CourseId}");
-            base.OnInitialized();
+           base.OnInitializedAsync();
         }
 
-        public async Task HandleValidSubmit()
+        private async Task HandleValidSubmit()
         {
             try
             {
                 Module.CourseId = CourseId;
-                //var json = JsonSerializer.Serialize(Module);
-                using var client = new HttpClient();
-
-                //var httpContent = new StringContent(json, new MediaTypeHeaderValue("application/json"));
-                //var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = await client.PostAsJsonAsync($"api/Module/AddModule", Module);
-                
-                                 
-                if (response.IsSuccessStatusCode)
+                if (await GenericDataService.AddAsync(UriHelpers.GetModulesUri(), Module))
                 {
-                    //responseData = await response.Content.ReadAsStringAsync();
-                    NavigationManager.NavigateTo($"/courses");
+                    NavigationManager.NavigateTo("/api/courses");
                 }
                 else
                 {
-                    ErrorMessage = "Could not add Module " + response.StatusCode;
+                    ErrorMessage = "Could not add module";
                 }
-
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                ErrorMessage = ex.Message;
+                ErrorMessage = $"{ex.Message} {ex.HResult}";
             }
-          
         }
     }
 }

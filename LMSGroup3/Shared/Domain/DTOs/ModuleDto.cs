@@ -8,11 +8,11 @@ namespace LMSGroup3.Shared.Domain.DTOs
 {
     public class ModuleDto
     {
-        public int Id { get; set; }
+        public int ModuleId { get; set; }
         public string ModuleName { get; set; }
         public string ModuleDescription { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime StartDate { get; set; } = DateTime.Now;
+        public DateTime EndDate { get; set; } = DateTime.Now;
         public int CourseId { get; set; }
 
     }

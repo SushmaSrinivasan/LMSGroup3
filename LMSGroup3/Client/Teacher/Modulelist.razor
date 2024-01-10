@@ -22,11 +22,11 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var module in modules)
+            @foreach (var module in Module)
             {
                 <tr>
                     @* <td>@course.Id</td> *@
-                    <td>@module.Id</td>
+                    <td>@module.ModuleId</td>
                     <td>@module.ModuleName</td>
 
                     @* <td>@module.StartDate.ToShortDateString()</td> *@
@@ -40,7 +40,7 @@ else
                         <authorized>
                             @* <a class="nav-link btn btn-link float-right" href="modules?courseId=@module.Id">Modules</a> *@
 
-                            <a class="nav-link btn btn-link float-right" href="activities?moduleId=@module.Id">Activity</a>
+                            <a class="nav-link btn btn-link float-right" href="activities?moduleId=@module.ModuleId">Activity</a>
 
                             @* <a class="nav-link btn btn-link" href="activities">Activity</a> *@
                         </authorized>
@@ -52,10 +52,10 @@ else
 }
 @code{
 
-    private List<ModuleDto> modules;
-    private int courseid = 3;
+    private List<ModuleDto> Modules;
+    private int CourseId = 3;
     protected override async Task OnInitializedAsync()
     {
-        modules = await HttpClient.GetFromJsonAsync<List<ModuleDto>>($"api/Course/GetModulesByCourse?courseid={courseid}");
+        Modules = await HttpClient.GetFromJsonAsync<List<ModuleDto>>($"api/Course/GetModulesByCourse?courseid={CourseId}");
     }
 }
