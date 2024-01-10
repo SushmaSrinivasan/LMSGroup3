@@ -33,6 +33,8 @@ builder.Services.AddIdentityServer()
 builder.Services.AddAuthentication()
     .AddIdentityServerJwt();
 builder.Services.AddScoped<ICourseRepository, CourseRepository>();
+builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+
 builder.Services.AddScoped<IActivityRepository, ActivityRepository>();
 
 builder.Services.AddControllersWithViews();
