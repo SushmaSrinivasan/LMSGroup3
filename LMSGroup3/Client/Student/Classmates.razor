@@ -2,6 +2,7 @@
 @using Microsoft.AspNetCore.Components.Authorization
 @inject HttpClient HttpClient
 @inherits ComponentBase
+
 <AuthorizeView Roles="Student">
     <Authorized>
         <h3>Classmates</h3>
@@ -16,8 +17,6 @@
                     <tr>
                         <th>First Name</th>
                         <th>Last Name</th>
-                        @* <th>Start Date</th>
-                        <th>End Date</th> *@
                     </tr>
                 </thead>
                 <tbody>
@@ -26,8 +25,6 @@
                     <tr>
                         <td>@studentcourse.FirstName</td>
                         <td>@studentcourse.LastName</td>
-                       @*  <td>@studentcourse.StartDate.ToShortDateString()</td>
-                        <td>@studentcourse.EndDate?.ToShortDateString()</td> *@
                     </tr>
                 }
                 </tbody>
