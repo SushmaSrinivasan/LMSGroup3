@@ -5,7 +5,7 @@ namespace LMSGroup3.Client.Teacher
 {
     public partial class Moduleslist
     {
-        private List<ModuleDto> modules;
+        private List<ModuleDto> modules = new List<ModuleDto>();
         private int courseid = 3;
         protected override async Task OnInitializedAsync()
         {

@@ -6,7 +6,8 @@ using System.Text.Json;
 using System.Net.WebSockets;
 using LMSGroup3.Client.Helpers;
 using LMSGroup3.Client.Services;
-
+using System.Reflection;
+using LMSGroup3.Shared.Entities;
 
 namespace LexiconLMS.Client.Pages
 {
@@ -23,6 +24,8 @@ namespace LexiconLMS.Client.Pages
 
         public ModuleDto Module { get; set; } = new ModuleDto();
 
+        public Course Course { get; set; } = new Course();
+
         public string ErrorMessage { get; set; } = string.Empty;
 
         protected override async Task OnInitializedAsync()
@@ -30,7 +33,7 @@ namespace LexiconLMS.Client.Pages
            base.OnInitializedAsync();
         }
 
-        private async Task HandleValidSubmit()
+        public async Task HandleValidSubmit()
         {
             try
             {
