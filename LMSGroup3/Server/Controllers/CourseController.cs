@@ -32,25 +32,12 @@ namespace LMSGroup3.Server.Controllers
         [HttpGet]
         [Route("GetCourses")]
         public async Task<ActionResult<IEnumerable<CourseDto>>> GetCourses()
-        {
+            {
             var courses = await _courseRepository.GetAllCourses();
             var courseDtos = _mapper.Map<List<CourseDto>>(courses);
 
             return Ok(courseDtos);
         }
-        //[HttpGet]
-        //[Route("GetModulesByCourse")]
-        //public async Task<ActionResult<IEnumerable<ModuleDto>>> GetModulesByCourse(int courseId)
-        //{
-        //    var moduleDto = await _courseRepository.GetCourseByIdAsync(courseId);
-
-        //    if (moduleDto == null)
-        //    {
-        //        return NotFound("Course not found");
-        //    }
-
-        //    return Ok(moduleDto);
-        //}
         
 
         [HttpGet]
@@ -67,7 +54,6 @@ namespace LMSGroup3.Server.Controllers
             var moduleDtos = _mapper.Map<List<ModuleDto>>(modules);
             return Ok(moduleDtos);
         }
-       
 
         [HttpGet]
         [Route("GetActivitiesByModule/{moduleId}")]
@@ -83,7 +69,21 @@ namespace LMSGroup3.Server.Controllers
             var activityDtos = _mapper.Map<List<ActivityDto>>(activities);
             return Ok(activityDtos);
         }
+        //[HttpGet]
+        //[Route("GetCourseForStudent/{studentId}")]
+        //public async Task<ActionResult<CourseDto>> GetCourseForStudent(string studentId)
+        //{
+        //    var studentCourse = _courseRepository.GetCourseForStudent(studentId);
 
+        //    if (studentCourse == null)
+        //    {
+        //        return NotFound($"No course found for student with ID {studentId}");
+        //    }
+
+        //    var courseDto = _mapper.Map<CourseDto>(studentCourse.Result);
+
+        //    return Ok(courseDto);
+        //}
 
     }
 
