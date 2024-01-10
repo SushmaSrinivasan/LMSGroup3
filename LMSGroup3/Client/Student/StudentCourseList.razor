@@ -1,14 +1,14 @@
-﻿@page "/studentcourses"
+﻿@page "/studentcourse"
+@using Microsoft.AspNetCore.Components.Authorization
 @inject HttpClient HttpClient
 @inherits ComponentBase
 
- <AuthorizeView Roles="Student">
+<AuthorizeView Roles="Student">
     <Authorized>
-        <h3>studentcourses</h3>
-        @context.User.Identity?.Name
-        @*  @if (studentcourses == null)
+        <h3>My Courses</h3>
+        @if (studentcourse == null)
         {
-            <p>Loading...</p>
+            <p>Loading studentcourse...</p>
         }
         else
         {
@@ -18,109 +18,105 @@
                         <th>Course Name</th>
                         <th>Course Description</th>
                         <th>Start Date</th>
-                        @* <th>End Date</th> 
-
+                        <th>End Date</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var course in courses)
+                    <tr>
+                        <td>@studentcourse.CourseName</td>
+                        <td>@studentcourse.CourseDescription</td>
+                        <td>@studentcourse.StartDate.ToShortDateString()</td>
+                        <td>@studentcourse.EndDate?.ToShortDateString()</td>
+                    </tr>
+                    <tr>
+                        <authorizeview>
+                            <authorized>
+                                <td colspan="2">
+                                    <button type="button" class="btn btn-primary float-right" @onclick="() => LoadModules(studentcourse.Id)">Modules</button>
+
+                                </td>
+                            </authorized>
+                        </authorizeview>
+                    </tr>
+                    @if (studentcourse.Id == selectedCourseId)
                     {
                         <tr>
-                            <td>@course.CourseName</td>
-                            <td>@course.CourseDescription</td>
-                            <td>@course.StartDate.ToShortDateString()</td>
-                            @* <td>@course.EndDate.ToShortDateString()</td> 
-                        </tr>
+                            <td colspan="2">
+                                <h5>Modules for @studentcourse.CourseName</h5>
+
                         <tr>
-                            <authorizeview>
-                                <authorized>
-                                    <td colspan="2">
-                                        <button type="button" class="btn btn-primary float-right" @onclick="() => LoadModules(course.Id)">Modules</button>
-
-                                    </td>
-                                </authorized>
-                            </authorizeview>
+                            <th>Module Name</th>
+                            <th>Module Description</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
                         </tr>
-                        @if (course.Id == selectedCourseId)
-                        {
-                            <tr>
-                                <td colspan="2">
-                                    <h5>Modules for @course.CourseName</h5>
 
-                            <tr>
-                                <th>Module Name</th>
-                                <th>Module Description</th>
-                                <th>Start Date</th>
-                                <th>End Date</th>
-                            </tr>
-
-                                    @if (modules != null)
-                                    {
-                                        @foreach (var module in modules)
-                                        {
-                                    <tr>
-                                        <td>@module.ModuleName</td>
-                                        <td>@module.ModuleDescription</td>
-                                        <td>@module.StartDate.ToShortDateString()</td>
-                                        <td>@module.EndDate.ToShortDateString()</td>
-                                        <td>
-                                            <button type="button" class="btn btn-primary float-right" @onclick="() => LoadActivities(module.Id)">Activities</button>
-                                        </td>
-                                    </tr>
-                                            @if (moduleWithActivities != null && moduleWithActivities.Id == module.Id)
-                                            {
-                                        <tr>
-                                            <td colspan="5">
-                                                <h6>Activities for @moduleWithActivities.ModuleName</h6>
-
-                                        <tr>
-                                            <th>Activity Description</th>
-                                            <th>Start Date</th>
-                                            <th>End Date</th>
-                                            <th>Activity Type</th>
-                                        </tr>
-
-                                                        @if (activities != null)
-                                                        {
-                                                            @foreach (var activity in activities)
-                                                            {
-                                                <tr>
-                                                    <td>@activity.ActivityDescription</td>
-                                                    <td>@activity.StartDate.ToShortDateString()</td>
-                                                    <td>@activity.EndDate.ToShortDateString()</td>
-                                                    <td>@activity.ActivityTypeId</td>
-                                                </tr>
-                                                            }
-                                                        }
-                                                        else
-                                                        {
-                                            <tr>
-                                                <td colspan="4">
-                                                    <p>Loading activities...</p>
-                                                </td>
-                                            </tr>
-                                                        }
-                                        </td>
-                                        </tr>
-                                            }
-                                        }
-                                    }
-                                    else
+                                @if (modules != null)
+                                {
+                                    @foreach (var module in modules)
                                     {
                                 <tr>
-                                    <td colspan="5">
-                                        <p>Loading modules...</p>
+                                    <td>@module.ModuleName</td>
+                                    <td>@module.ModuleDescription</td>
+                                    <td>@module.StartDate.ToShortDateString()</td>
+                                    <td>@module.EndDate.ToShortDateString()</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary float-right" @onclick="() => LoadActivities(module.Id)">Activities</button>
                                     </td>
                                 </tr>
+                                        @if (moduleWithActivities != null && moduleWithActivities.Id == module.Id)
+                                        {
+                                    <tr>
+                                        <td colspan="5">
+                                            <h6>Activities for @moduleWithActivities.ModuleName</h6>
+
+                                    <tr>
+                                        <th>Activity Description</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th>Activity Type</th>
+                                    </tr>
+
+                                                    @if (activities != null)
+                                                    {
+                                                        @foreach (var activity in activities)
+                                                        {
+                                            <tr>
+                                                <td>@activity.ActivityDescription</td>
+                                                <td>@activity.StartDate.ToShortDateString()</td>
+                                                <td>@activity.EndDate.ToShortDateString()</td>
+                                                <td>@activity.ActivityTypeId</td>
+                                            </tr>
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                        <tr>
+                                            <td colspan="4">
+                                                <p>Loading activities...</p>
+                                            </td>
+                                        </tr>
+                                                    }
+                                    </td>
+                                    </tr>
+                                        }
                                     }
-                            </td>
+                                }
+                                else
+                                {
+                            <tr>
+                                <td colspan="5">
+                                    <p>Loading modules...</p>
+                                </td>
                             </tr>
-                        }
+                                }
+                        </td>
+                        </tr>
                     }
                 </tbody>
             </table>
-        }*@
-        
+        }
     </Authorized>
-</AuthorizeView> 
+</AuthorizeView>
+
 
