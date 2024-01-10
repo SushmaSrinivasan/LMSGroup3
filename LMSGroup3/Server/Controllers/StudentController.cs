@@ -34,5 +34,20 @@ namespace LMSGroup3.Server.Controllers
 
             return Ok(courseDto);
         }
+        [HttpGet]
+        [Route("GetStudentsInSameCourse/{studentId}")]
+        public ActionResult<IEnumerable<StudentCoursesDto>> GetStudentsInSameCourse(string studentId)
+        {
+            var studentsInSameCourse = _studentRepository.GetStudentsInSameCourse(studentId);
+
+            if (studentsInSameCourse == null )
+            {
+                return NotFound($"No students found in the same course as student with ID {studentId}");
+            }
+
+            var studentsDto = _mapper.Map<IEnumerable<StudentCoursesDto>>(studentsInSameCourse);
+
+            return Ok(studentsDto);
+        }
     }
 }
