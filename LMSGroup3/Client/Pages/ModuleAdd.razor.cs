@@ -9,9 +9,9 @@ using LMSGroup3.Client.Services;
 using System.Reflection;
 using LMSGroup3.Shared.Entities;
 
-namespace LexiconLMS.Client.Pages
+namespace LMSGroup3.Client.Pages
 {
-    public partial class ModuleAdd : ComponentBase
+    public partial class ModuleAdd 
     {
         [Inject]
         public NavigationManager NavigationManager { get; set; } = default!;
@@ -25,13 +25,13 @@ namespace LexiconLMS.Client.Pages
         public ModuleDto Module { get; set; } = new ModuleDto();
 
         public Course Course { get; set; } = new Course();
-
+        [Parameter]
         public string ErrorMessage { get; set; } = string.Empty;
 
-        protected override async Task OnInitializedAsync()
+        /*protected override async Task OnInitializedAsync()
         {
            base.OnInitializedAsync();
-        }
+        }*/
 
         public async Task HandleValidSubmit()
         {
@@ -40,7 +40,7 @@ namespace LexiconLMS.Client.Pages
                 Module.CourseId = CourseId;
                 if (await GenericDataService.AddAsync(UriHelpers.GetModulesUri(), Module))
                 {
-                    NavigationManager.NavigateTo("/api/courses");
+                    NavigationManager.NavigateTo("/courses");
                 }
                 else
                 {

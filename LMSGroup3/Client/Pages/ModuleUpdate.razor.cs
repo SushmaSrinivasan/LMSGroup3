@@ -59,7 +59,7 @@ namespace LMSGroup3.Client.Pages
             }
             try
             {
-                if (await GenericDataService.UpdateAsync(UriHelpers.GetModuleUri(Module.ModuleId), Module))
+                if (await GenericDataService.UpdateAsync(UriHelpers.GetModuleUri(Module.Id), Module))
                 {
                     Message = "Module saved";
                 }
@@ -82,7 +82,7 @@ namespace LMSGroup3.Client.Pages
                 {
                     return;
                 }
-                if (await GenericDataService.DeleteAsync(UriHelpers.GetModuleUri(Module.ModuleId)))
+                if (await GenericDataService.DeleteAsync(UriHelpers.GetModuleUri(Module.Id)))
                 {
                     NavigationManager.NavigateTo("/");
                 }

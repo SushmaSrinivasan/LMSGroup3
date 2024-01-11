@@ -1,8 +1,13 @@
 ﻿@page "/ModuleUpdate/{Id:int}"
 @using Microsoft.AspNetCore.Authorization
 @using LMSGroup3.Shared.Domain.DTOs
+@using LMSGroup3.Client.Pages
 @inject HttpClient HttpClient
 
+@{
+    ModuleDto ModuleDto = new ModuleDto();
+
+}
 
 <h3>Edit Modules</h3>
 

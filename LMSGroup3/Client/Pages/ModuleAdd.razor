@@ -1,11 +1,15 @@
 ﻿@page "/ModuleAdd/{CourseId}"
+
 @using Microsoft.AspNetCore.Authorization
 @using LMSGroup3.Shared.Domain.DTOs
 
+@using LMSGroup3.Client.Pages
 
+@{
+    ModuleDto ModuleDto = new ModuleDto();
 
+}
 <h3>Add Modules</h3>
-
 
 
 @if (!string.IsNullOrEmpty(ErrorMessage))
