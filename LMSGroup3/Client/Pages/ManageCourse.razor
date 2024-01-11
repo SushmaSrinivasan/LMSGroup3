@@ -1,8 +1,10 @@
-﻿@using Microsoft.AspNetCore.Authorization;
-@page "/ManageCourse"
+﻿@page "/managecourse"
+@using Microsoft.AspNetCore.Authorization;
 
+<AuthorizeView Roles="Teacher">
+<Authorized>
 <h2>Manage Courses</h2>
-@attribute [Authorize (Roles = "Teacher")]
+
 {
 	<p><em>Loading...</em></p>
 }
@@ -33,6 +35,5 @@ else
 		</tbody>
 </table>
 }
-@code {
-
-}
+	</Authorized>
+</AuthorizeView>
