@@ -1,4 +1,4 @@
-﻿ using LMSGroup3.Server.Data;
+﻿using LMSGroup3.Server.Data;
 using LMSGroup3.Shared.Entities;
 using LMSGroup3.Server.Repositories;
 using LMSGroup3.Shared.Domain.DTOs;
@@ -26,6 +26,28 @@ namespace LMSGroup3.Server.Repositories
 
             return course;
         }
+
+        public async Task<IEnumerable<ApplicationUserDto>> GetStudentsInCourse(int courseId)
+        {
+            // Retrieve student entities associated with the given course
+            var courseWithUsers = _context.StudentCourses
+                .Where(sc => sc.CourseId == courseId)
+                .Select(sc => sc.Student);
+
+            // Now, materialize the query to a list of users
+            var studentsInCourse = await _context.Users
+                .Where(u => courseWithUsers.Contains(u))
+                .Select(u => new ApplicationUserDto
+                {
+                    FirstName = u.FirstName,
+                    LastName = u.LastName,
+                    Email = u.Email
+                })
+                .ToListAsync();
+
+            return studentsInCourse;
+        }
+
         public async Task<IEnumerable<ApplicationUserDto>> GetStudentsInSameCourse(string studentId)
         {
             // Get the CourseId of the given student
@@ -60,5 +82,4 @@ namespace LMSGroup3.Server.Repositories
             return studentsInSameCourse;
         }
     }
-
 }

@@ -21,9 +21,7 @@
                 <table class="table table-light">
                     <thead class="thead-light">
                         <tr>
-                            <th></th>
-                            <th>Id</th>
-                            <th>Course Name</th>
+                            <th>CourseName</th>
                             <th>Course Description</th>
                             <th>Start Date</th>
                             <th>End Date</th>
@@ -36,12 +34,10 @@
                         @foreach (var course in Courses)
                         {
                             <tr>
-                                <td>@course.Id</td>
                                 <td>@course.CourseName</td>
                                 <td>@course.CourseDescription</td>
                                 <td>@course.StartDate</td>
                                 <td>@course.EndDate</td>
-                                <td><a href="@($"/CourseAdd/{course.Id}")" class="btn btn-outline-primary">Add Course</a></td>
                                 <td><a href="@($"/CourseUpdate/{course.Id}")" class="btn btn-outline-primary">Edit Course</a></td>
                                 <td><a href="@($"/CourseDelete/{course.Id}")" class="btn btn-outline-primary">Delete Course</a></td>
                             </tr>

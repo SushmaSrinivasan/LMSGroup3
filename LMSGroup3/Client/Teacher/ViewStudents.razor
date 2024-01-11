@@ -1,0 +1,39 @@
+﻿@page "/viewstudents/{courseId:int}"
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@inject HttpClient HttpClient
+
+<AuthorizeView Roles="Student">
+    <Authorized>
+        <div class="container mt-4">
+            <h3>View Students</h3>
+
+            @if (viewstudents == null)
+            {
+                <p>Loading...</p>
+            }
+            else
+            {
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>First Name</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var viewstudents in viewstudents)
+                        {
+                            <tr>
+                                <td>@viewstudents.FirstName</td>
+                                <td><a href="@($"/ViewStudents/{viewstudents.Id}")" class="btn btn-outline-primary">View Students</a></td>
+                                <td><a href="@($"/AddStudent/{viewstudents.Id}")" class="btn btn-outline-primary">Add Student</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </Authorized>
+</AuthorizeView>

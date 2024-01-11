@@ -35,6 +35,7 @@ namespace LMSGroup3.Server.Controllers
 
             return Ok(courseDto);
         }
+
         [HttpGet]
         [Route("GetStudentsInSameCourse/{studentId}")]
         public async Task<ActionResult<IEnumerable<ApplicationUserDto>>> GetStudentsInSameCourse(string studentId)
@@ -49,6 +50,22 @@ namespace LMSGroup3.Server.Controllers
             var studentsDto = _mapper.Map<IEnumerable<ApplicationUserDto>>(studentsInSameCourse);
 
             return Ok(studentsDto);
+        }
+
+        [HttpGet]
+        [Route("GetStudentsInCourse/{courseId}")]
+        public async Task<ActionResult<IEnumerable<ApplicationUserDto>>> GetStudentsInCourse(int courseId)
+        {
+            var getStudentsInCourse = await _studentRepository.GetStudentsInCourse(courseId);
+
+            if (getStudentsInCourse == null || !getStudentsInCourse.Any())
+            {
+                return NotFound("No students found in course");
+            }
+
+            var applicationUserDto = _mapper.Map<IEnumerable<ApplicationUserDto>>(getStudentsInCourse);
+
+            return Ok(applicationUserDto);
         }
     }
 }
