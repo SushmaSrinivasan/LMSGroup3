@@ -11,6 +11,6 @@
         // Navigation Property
         public ICollection<ApplicationUser> ApplicationUsers { get; set; } = new List<ApplicationUser>();
 
-        public ICollection<Module> Modules { get; set; } = new List<Module>();
+        public ICollection<Module>? Modules { get; set; } = new List<Module>();
     }
 }
