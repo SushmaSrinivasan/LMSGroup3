@@ -5,7 +5,7 @@ namespace LMSGroup3.Server.Repositories
 {
     public interface ICourseRepository
     {
-        Task<Course> GetCourse(int id);
+        Task<Course> Get(int id);
         Task<IEnumerable<Course>> GetAllCourses();
         Task<IEnumerable<CourseDto>> GetAllCoursesWithModules();
         Task<IEnumerable<ModuleDto>> GetCourseByIdAsync(int courseid);

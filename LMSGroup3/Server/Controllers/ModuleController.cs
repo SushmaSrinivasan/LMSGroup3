@@ -108,7 +108,7 @@ namespace LMSGroup3.Server.Controllers
             _context.Modules.Add(@module);
             await _context.SaveChangesAsync();
 
-            return Ok(@module);
+            return CreatedAtAction("GetModule", new { id = @module.Id }, @module);
         }
 
         // DELETE: api/Modules/5

@@ -6,6 +6,7 @@
 
 <AuthorizeView Roles="Teacher">
     <Authorized>
+
         <div class="container mt-4">
             <h3>Courses</h3>
 
@@ -16,7 +17,7 @@
             else
             {
                 <table class="table table-striped">
-                    <thead class="thead-dark">
+                    <thead>
                         <tr>
                             <th>Course Name</th>
                             <th>Course Description</th>
@@ -25,6 +26,7 @@
                             <th></th>
                             <th></th>
                             @* <th>End Date</th> *@
+
                         </tr>
                     </thead>
                     <tbody>
@@ -34,9 +36,9 @@
                                 <td>@course.CourseName</td>
                                 <td>@course.CourseDescription</td>
                                 <td>@course.StartDate.ToShortDateString()</td>
-                                <td><a href="@($"/ModuleAdd/{course.Id}")" class="btn btn-outline-primary">Add Module</a></td>
-                                <td><a href="@($"/ModuleUpdate/{course.Id}")" class="btn btn-outline-primary">Update Module</a></td>
-                                <td><a href="@($"/ModuleDelete/{course.Id}")" class="btn btn-outline-primary">Delete Module</a></td>
+                                <td><a href="@($"/ModuleAdd/{course.Id}")" class="btn btn-outline-primary">Add Module</a>&nbsp;</td>
+                                <td><a href="@($"/ModuleUpdate/{Module.Id}")" class="btn btn-outline-primary">Update Module</a>&nbsp;</td>
+                                <td><a href="@($"/ModuleDelete/{Module.Id}")" class="btn btn-outline-primary">Delete Module</a>&nbsp;</td>
                                 @* <td>@course.EndDate.ToShortDateString()</td> *@
                             </tr>
                             <tr>
@@ -44,6 +46,7 @@
                                     <authorized>
                                         <td colspan="2">
                                             <button type="button" class="btn btn-primary float-right" @onclick="() => LoadModules(course.Id)">Modules</button>
+
                                         </td>
                                     </authorized>
                                 </authorizeview>
@@ -55,6 +58,7 @@
                                         <h5>Modules for @course.CourseName</h5>
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <th>Module Name</th>
                                     <th>Module Description</th>
@@ -82,6 +86,7 @@
                                                     <h6>Activities for @moduleWithActivities.ModuleName</h6>
                                                 </td>
                                             </tr>
+
                                             <tr>
                                                 <th>Activity Description</th>
                                                 <th>Start Date</th>
@@ -109,6 +114,7 @@
                                                     </td>
                                                 </tr>
                                             }
+
                                         }
                                     }
                                 }
