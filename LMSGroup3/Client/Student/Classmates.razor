@@ -1,0 +1,36 @@
+﻿@page "/classmates"
+@using Microsoft.AspNetCore.Components.Authorization
+@inject HttpClient HttpClient
+@inherits ComponentBase
+
+<AuthorizeView Roles="Student">
+    <Authorized>
+        <h3>Classmates</h3>
+        @if (studentcourses == null)
+        {
+            <p>Loading studentcourse...</p>
+        }
+        else
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var studentcourse in studentcourses)
+                {
+                    <tr>
+                        <td>@studentcourse.FirstName</td>
+                        <td>@studentcourse.LastName</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }
+    </Authorized>
+</AuthorizeView>
+
+

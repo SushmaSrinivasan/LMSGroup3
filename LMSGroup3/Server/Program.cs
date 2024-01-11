@@ -1,9 +1,17 @@
 using LMSGroup3.Server.Data;
-using LMSGroup3.Server.Models;
+using LMSGroup3.Shared.Entities;
+using LMSGroup3.Server.Repositories;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
+using LMSGroup3.Server;
+using LMSGroup3.Server.Mappings;
+using Microsoft.AspNetCore.Builder;
+using System;
+//using AutoMapper..DependencyInjection;
 
+//using Microsoft./*Extensions.DependencyInjection;*/
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -13,16 +21,27 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddIdentityServer()
-    .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
+    .AddApiAuthorization<ApplicationUser, ApplicationDbContext>(
+    options =>
+    {
+        options.IdentityResources["openid"].UserClaims.Add("role");
+        options.ApiResources.Single().UserClaims.Add("role");
+    });
 
 builder.Services.AddAuthentication()
     .AddIdentityServerJwt();
+builder.Services.AddScoped<ICourseRepository, CourseRepository>();
+builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+
+builder.Services.AddScoped<IActivityRepository, ActivityRepository>();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+builder.Services.AddAutoMapper(typeof(Mapping));
 
 var app = builder.Build();
 
@@ -31,6 +50,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
     app.UseWebAssemblyDebugging();
+    //await app.SeedDataAsync();
 }
 else
 {

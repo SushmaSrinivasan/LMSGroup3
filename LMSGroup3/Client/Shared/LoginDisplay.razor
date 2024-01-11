@@ -2,13 +2,23 @@
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @inject NavigationManager Navigation
 
-<AuthorizeView>
+<AuthorizeView Roles="Teacher">
+    <Authorized>
+        <a href="authentication/profile">Hello, @context.User.Identity?.Name!</a>
+        <button class="nav-link btn btn-link" @onclick="BeginLogOut">Log out</button>
+        <button class="nav-link btn btn-link"><a href="authentication/register">Register New User</a></button>
+    </Authorized>
+</AuthorizeView>
+
+<AuthorizeView Roles="Student">
     <Authorized>
         <a href="authentication/profile">Hello, @context.User.Identity?.Name!</a>
         <button class="nav-link btn btn-link" @onclick="BeginLogOut">Log out</button>
     </Authorized>
+</AuthorizeView>
+
+<AuthorizeView>
     <NotAuthorized>
-        <a href="authentication/register">Register</a>
         <a href="authentication/login">Log in</a>
     </NotAuthorized>
 </AuthorizeView>
