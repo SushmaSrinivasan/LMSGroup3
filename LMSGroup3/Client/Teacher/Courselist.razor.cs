@@ -11,6 +11,8 @@ namespace LMSGroup3.Client.Teacher
         private ModuleDto moduleWithActivities;
         private int selectedCourseId;
         private int selectedModuleId;
+        public ModuleDto Module { get; set; } = new ModuleDto();
+   
 
         protected override async Task OnInitializedAsync()
         {

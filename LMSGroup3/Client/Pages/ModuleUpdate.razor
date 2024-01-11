@@ -1,0 +1,57 @@
+﻿@page "/ModuleUpdate/{Id:int}"
+@using Microsoft.AspNetCore.Authorization
+@using LMSGroup3.Shared.Domain.DTOs
+@using LMSGroup3.Client.Pages
+@inject HttpClient HttpClient
+
+@{
+    ModuleDto ModuleDto = new ModuleDto();
+
+}
+
+<h3>Edit Modules</h3>
+
+if (!string.IsNullOrEmpty(ErrorMessage))
+{
+<div class="alert alert-danger" role="alert">
+    @ErrorMessage
+</div>
+}
+
+<section class="moduleupdate">
+    <EditForm Model="@ModuleDto" OnValidSubmit="@HandleValidSubmit">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ModuleName</th>
+                    <th scope="col">ModuleDescription</th>
+                    <th scope="col">StartDate</th>
+                    <th scope="col">EndDate</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row">
+                        <InputText id="ModuleName" @bind-Value="ModuleDto.ModuleName" class="form-control col-md-8"></InputText>
+                        <ValidationMessage For="@(() => ModuleDto.ModuleName)" />
+                    </td>
+                    <td scope="row">
+                        <InputText id="ModuleDescription" @bind-Value="ModuleDto.ModuleDescription" class="form-control col-md-8"></InputText>
+                        <ValidationMessage For="@(() => ModuleDto.ModuleDescription)" />
+                    </td>
+                    <td scope="row">
+                        <InputDate id="StartDate" @bind-Value="ModuleDto.StartDate" class="form-control col-md-8"></InputDate>
+                    </td>
+                    <td scope="row">
+                        <InputDate id="EndDate" @bind-Value="ModuleDto.EndDate" class="form-control col-md-8"></InputDate>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+        <a href="@($"/courses")" class="btn btn-outline-primary">Back to Course list</a>&nbsp;
+        <button type="submit" class="btn btn-primary me-1">Save Module</button>
+
+    </EditForm>
+
+</section>

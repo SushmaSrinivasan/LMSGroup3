@@ -1,5 +1,5 @@
 using LMSGroup3.Server.Data;
-using LMSGroup3.Server.Models;
+using LMSGroup3.Shared.Entities;
 using LMSGroup3.Server.Repositories;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using LMSGroup3.Server;
 using LMSGroup3.Server.Mappings;
+using Microsoft.AspNetCore.Builder;
+using System;
 //using AutoMapper..DependencyInjection;
 
 //using Microsoft./*Extensions.DependencyInjection;*/

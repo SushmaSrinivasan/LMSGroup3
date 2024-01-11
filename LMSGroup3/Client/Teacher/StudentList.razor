@@ -1,14 +1,15 @@
-﻿@page "/classmates"
+﻿@* @page "/studentlist"
 @using Microsoft.AspNetCore.Components.Authorization
 @inject HttpClient HttpClient
 @inherits ComponentBase
 
-<AuthorizeView Roles="Student">
+<AuthorizeView Roles="Teacher">
     <Authorized>
-        <h3>Classmates</h3>
-        @if (studentcourses == null)
+        <h3>Student List</h3>
+
+        @if (studentlists == null)
         {
-            <p>Loading studentcourse...</p>
+            <p>Loading Student List...</p>
         }
         else
         {
@@ -17,14 +18,18 @@
                     <tr>
                         <th>First Name</th>
                         <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Password</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var studentcourse in studentcourses)
+                    @foreach (var studentlist in studentlists)
                 {
                     <tr>
-                        <td>@studentcourse.FirstName</td>
-                        <td>@studentcourse.LastName</td>
+                        <td>@studentlist.FirstName</td>
+                        <td>@studentlist.LastName</td>
+                            <td>@studentlist.Email</td>
+                            <td>@studentlist.Password</td>
                     </tr>
                 }
                 </tbody>
@@ -34,3 +39,4 @@
 </AuthorizeView>
 
 
+ *@

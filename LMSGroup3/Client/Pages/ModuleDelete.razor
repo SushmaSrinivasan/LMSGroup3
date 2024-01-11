@@ -1,0 +1,39 @@
+﻿@page "/ModuleDelete/{Id:int}"
+@using Microsoft.AspNetCore.Authorization
+@using LMSGroup3.Shared.Domain.DTOs
+@inject HttpClient HttpClient
+
+<h3>Delete Module</h3>
+
+if (!string.IsNullOrEmpty(ErrorMessage))
+{
+<div class="alert alert-danger" role="alert">
+    @ErrorMessage
+</div>
+}
+<h5>Are you sure that you want to delete this Module?</h5>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Module Id</th>
+            <th scope="col">Module Name</th>
+            <th scope="col">Module Description</th>
+            <th scope="col">StartDate</th>
+            <th scope="col">End Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td scope="row">@Module.Id</td>
+            <td scope="row">@Module.ModuleName</td>
+            <td scope="row">@Module.ModuleDescription</td>
+            <td scope="row">@Module.StartDate</td>
+            <td scope="row">@Module.EndDate</td>
+
+        </tr>
+    </tbody>
+</table>
+
+<a href="@($"/courses")" class="btn btn-outline-primary">Back to Course list</a>&nbsp;
+<button type="submit" class="btn btn-primary me-1">Delete Module</button>
+    

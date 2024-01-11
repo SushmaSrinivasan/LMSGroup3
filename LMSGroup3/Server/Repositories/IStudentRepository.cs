@@ -1,4 +1,4 @@
-﻿using LMSGroup3.Server.Models;
+﻿using LMSGroup3.Shared.Entities;
 using LMSGroup3.Shared.Domain.DTOs;
 using LMSGroup3.Shared.DTOs;
 

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace LMSGroup3.Server.Models
+
+namespace LMSGroup3.Shared.Entities
 {
     public class ApplicationUser : IdentityUser
     {
@@ -8,7 +9,7 @@ namespace LMSGroup3.Server.Models
         public string LastName { get; set; } = string.Empty;
         public string FullName => FirstName + " " + LastName;
 
-        public string Role;
+        //public string Role;
 
         // Navigation Property
         public Course Course { get; set; } = default!;
