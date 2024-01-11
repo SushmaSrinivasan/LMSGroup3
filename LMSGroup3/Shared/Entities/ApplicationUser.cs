@@ -9,7 +9,7 @@ namespace LMSGroup3.Shared.Entities
         public string LastName { get; set; } = string.Empty;
         public string FullName => FirstName + " " + LastName;
 
-        public string Role;
+        //public string Role;
 
         // Navigation Property
         public Course Course { get; set; } = default!;

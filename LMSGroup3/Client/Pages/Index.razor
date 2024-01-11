@@ -7,15 +7,23 @@
 <h1>Welcome to Lexicon LMS</h1>
 
 <AuthorizeView Roles="Teacher">
-    <Authorized>
+    <Authorized>       
         <h5>Welcome teacher @context.User.Identity?.Name!</h5>
+<<<<<<< HEAD
             <LMSGroup3.Client.Teacher.Courselist></LMSGroup3.Client.Teacher.Courselist>
+=======
+        <LMSGroup3.Client.Teacher.Courselist></LMSGroup3.Client.Teacher.Courselist>
+>>>>>>> ede9835e3dee31abd1370ceb317a51810af4ed54
     </Authorized>
 </AuthorizeView>
 
 <AuthorizeView Roles="Student">
     <Authorized>
         <h5>Welcome student @context.User.Identity?.Name!</h5>
+<<<<<<< HEAD
             <LMSGroup3.Client.Student.StudentCourseList></LMSGroup3.Client.Student.StudentCourseList>
+=======
+        <LMSGroup3.Client.Student.StudentCourseList></LMSGroup3.Client.Student.StudentCourseList>
+>>>>>>> ede9835e3dee31abd1370ceb317a51810af4ed54
     </Authorized>
 </AuthorizeView>
