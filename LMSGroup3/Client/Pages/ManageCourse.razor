@@ -7,46 +7,48 @@
 @inherits ComponentBase
 
 <AuthorizeView Roles="Teacher">
-<Authorized>
-<h2>Manage Courses</h2>
+    <Authorized>
+        <div class="container mt-4">
+            <h2>Manage Courses</h2>
+            <h3><a href="" class="btn btn-primary">Add Course</a></h3>
 
-@if (Courses == null) 
-{
-	<p><em>Loading...</em></p>
-}
-else
-{
-
-<table class=" table table-light">
-	<thead class="table-primary">
-		<tr>
-			<th></th>
-			<th>Id </th>
-			<th>Course Name</th>
-			<th>Course Description</th>
-			<th>Start Date</th>
-			<th>End Date</th>
-			<th></th>
-			<th></th>
-			<th></th>
-		</tr>
-		</thead>
-		<tbody>
-			@foreach(var course in Courses)
-			{
-				<tr>
-				<td>@course.Id</td>
-				<td>@course.CourseName</td>
-				<td>@course.CourseDescription</td>
-				<td>@course.StartDate</td>
-				<td>@course.EndDate</td>
-				<td><a href="@($"/CourseAdd/{course.Id}")" class="btn btn-outline-primary">Add Course</a>&nbsp;</td>
-				<td><a href="@($"/CourseUpdate/{course.Id}")" class="btn btn-outline-primary">Edit Course</a>&nbsp;</td>
-				<td><a href="@($"/CourseDelete/{course.Id}")" class="btn btn-outline-primary">Delete Course</a>&nbsp;</td>
-				</tr>
-			}
-		</tbody>
-</table>
-}
-	</Authorized>
+            @if (Courses == null)
+            {
+                <p><em>Loading...</em></p>
+            }
+            else
+            {
+                <table class="table table-light">
+                    <thead class="thead-light">
+                        <tr>
+                            <th></th>
+                            <th>Id</th>
+                            <th>Course Name</th>
+                            <th>Course Description</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var course in Courses)
+                        {
+                            <tr>
+                                <td>@course.Id</td>
+                                <td>@course.CourseName</td>
+                                <td>@course.CourseDescription</td>
+                                <td>@course.StartDate</td>
+                                <td>@course.EndDate</td>
+                                <td><a href="@($"/CourseAdd/{course.Id}")" class="btn btn-outline-primary">Add Course</a></td>
+                                <td><a href="@($"/CourseUpdate/{course.Id}")" class="btn btn-outline-primary">Edit Course</a></td>
+                                <td><a href="@($"/CourseDelete/{course.Id}")" class="btn btn-outline-primary">Delete Course</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </Authorized>
 </AuthorizeView>
