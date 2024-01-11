@@ -1,11 +1,14 @@
-﻿@page "/ModuleAdd/{CourseId:int}"
+﻿@page "/ModuleAdd/{CourseId}"
 
 @using Microsoft.AspNetCore.Authorization
 @using LMSGroup3.Shared.Domain.DTOs
 
 @using LMSGroup3.Client.Pages
-@inject HttpClient Http
 
+@{
+    ModuleDto ModuleDto = new ModuleDto();
+
+}
 <h3>Add Modules</h3>
 
 
@@ -38,7 +41,7 @@
 
 <section class="moduleadd">
 
-    <EditForm Model="@moduleDto" OnValidSubmit="@HandleValidSubmit">
+    <EditForm Model="@ModuleDto" OnValidSubmit="@HandleValidSubmit">
 
         <DataAnnotationsValidator/>
 
@@ -54,18 +57,18 @@
             <tbody>
                 <tr>
                     <td scope="row">
-                        <InputText id="ModuleName" @bind-Value="moduleDto.ModuleName" class="form-control col-md-8"></InputText>
-                        <ValidationMessage For="@(() => moduleDto.ModuleName)" />
+                        <InputText id="ModuleName" @bind-Value="ModuleDto.ModuleName" class="form-control col-md-8"></InputText>
+                        <ValidationMessage For="@(() => ModuleDto.ModuleName)" />
                     </td>
                     <td scope="row">
-                        <InputText id="ModuleDescription" @bind-Value="moduleDto.ModuleDescription" class="form-control col-md-8"></InputText>
-                        <ValidationMessage For="@(() => moduleDto.ModuleDescription)" />
+                        <InputText id="ModuleDescription" @bind-Value="ModuleDto.ModuleDescription" class="form-control col-md-8"></InputText>
+                        <ValidationMessage For="@(() => ModuleDto.ModuleDescription)" />
                     </td>
                     <td scope="row">
-                        <InputDate id="StartDate" @bind-Value="moduleDto.StartDate" class="form-control col-md-8"></InputDate>
+                        <InputDate id="StartDate" @bind-Value="ModuleDto.StartDate" class="form-control col-md-8"></InputDate>
                      </td>
                     <td scope="row">
-                        <InputDate id="EndDate" @bind-Value="moduleDto.EndDate" class="form-control col-md-8"></InputDate>
+                        <InputDate id="EndDate" @bind-Value="ModuleDto.EndDate" class="form-control col-md-8"></InputDate>
                     </td>
                 </tr>
             </tbody>

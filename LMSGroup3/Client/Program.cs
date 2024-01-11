@@ -1,5 +1,4 @@
 using LMSGroup3.Client;
-using LMSGroup3.Client.Services;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -16,7 +15,5 @@ builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().Cre
 
 builder.Services.AddApiAuthorization();
 
-//builder.Services.AddSingleton<IGenericDataService, GenericDataService>();
-//builder.Services.AddSingleton<IModuleDataService, ModuleDataService>();
 
 await builder.Build().RunAsync();

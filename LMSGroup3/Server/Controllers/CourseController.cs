@@ -38,17 +38,7 @@ namespace LMSGroup3.Server.Controllers
 
             return Ok(courseDtos);
         }
-
-        [HttpGet("{Id}")]
         
-        public async Task<ActionResult<CourseDto>> GetCourse(int Id)
-        {
-            var course = await _courseRepository.GetCourse(Id);
-            //var courseDtos = _mapper.Map<CourseDto>(course);
-
-            return Ok(course);
-        }
-
 
         [HttpGet]
         [Route("GetModulesByCourse/{courseId}")]
