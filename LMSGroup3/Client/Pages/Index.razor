@@ -7,15 +7,15 @@
 <h1 class="text-center">Welcome to Lexicon LMS</h1>
 
 <AuthorizeView Roles="Teacher">
-    <Authorized>
-        <h5 class="text-center">Welcome teacher @context.User.Identity?.Name!</h5>
+    <Authorized>       
+        <h5>Welcome teacher @context.User.Identity?.Name!</h5>
         <LMSGroup3.Client.Teacher.Courselist></LMSGroup3.Client.Teacher.Courselist>
     </Authorized>
 </AuthorizeView>
 
 <AuthorizeView Roles="Student">
     <Authorized>
-        <h5 class="text-center">Welcome student @context.User.Identity?.Name!</h5>
+        <h5>Welcome student @context.User.Identity?.Name!</h5>
         <LMSGroup3.Client.Student.StudentCourseList></LMSGroup3.Client.Student.StudentCourseList>
     </Authorized>
 </AuthorizeView>

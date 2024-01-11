@@ -3,10 +3,10 @@
     public class UriHelpers
 
     {
-        public const string ModuleDetails = $"/ModuleDetails/{{moduleId:int}}";
-        public const string ModuleUpdate = $"/ModuleUpdate/{{moduleId:int}}";
+        public const string ModuleDetails = $"/ModuleDetails/{{Id:int}}";
+        public const string ModuleUpdate = $"/ModuleUpdate/{{Id:int}}";
         public const string ModuleAdd = $"/ModuleAdd/{{courseId:int}}";
-        public const string ModuleDelete = $"/Moduleelete/{{moduleId:int}}";
+        public const string ModuleDelete = $"/Moduleelete/{{Id:int}}";
         public static string GetModuleAddUri<T>(T courseId) => $"/moduleadd/{courseId}";
         public static string GetModuleUpdateUri<T>(T moduleId) => $"/moduleupdate/{moduleId}";
         public static string GetModuleDeleteUri<T>(T moduleId) => $"/moduledelete/{moduleId}";

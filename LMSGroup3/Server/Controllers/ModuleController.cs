@@ -4,7 +4,7 @@ using AutoMapper;
 using LMSGroup3.Server.Data;
 using LMSGroup3.Shared.Entities;
 
-namespace LexiconLMS.Server.Controllers
+namespace LMSGroup3.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
