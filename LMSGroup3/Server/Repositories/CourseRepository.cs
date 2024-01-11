@@ -24,7 +24,7 @@ namespace LMSGroup3.Server.Repositories
             _mapper = mapper;
         }
 
-        public async Task<Course> Get(int id)
+        public async Task<Course> GetCourse(int id)
         {
             return _context.Courses.FirstOrDefault(c => c.Id == id);
         }

@@ -5,9 +5,9 @@ using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Net.WebSockets;
 using LMSGroup3.Client.Helpers;
-using LMSGroup3.Client.Services;
 using System.Reflection;
 using LMSGroup3.Shared.Entities;
+using System.Net.Http.Json;
 
 namespace LMSGroup3.Client.Pages
 {
@@ -16,37 +16,41 @@ namespace LMSGroup3.Client.Pages
         [Inject]
         public NavigationManager NavigationManager { get; set; } = default!;
 
-        [Inject]
-        public IGenericDataService GenericDataService { get; set; } = default!;
+        //[Inject]
+        //public IGenericDataService GenericDataService { get; set; } = default!;
 
         [Parameter]
         public int CourseId { get; set; }
 
-        public ModuleDto Module { get; set; } = new ModuleDto();
+        public ModuleDto moduleDto { get; set; } = new ModuleDto();
 
-        public Course Course { get; set; } = new Course();
+        public CourseDto Course { get; set; } = new CourseDto();
+
         [Parameter]
         public string ErrorMessage { get; set; } = string.Empty;
 
-        /*protected override async Task OnInitializedAsync()
+        protected override async Task OnInitializedAsync()
         {
-           base.OnInitializedAsync();
-        }*/
+            Course = await Http.GetFromJsonAsync<CourseDto>($"api/Course/{CourseId}");
+            base.OnInitializedAsync();
+        }
 
         public async Task HandleValidSubmit()
         {
             try
             {
-                Module.CourseId = CourseId;
-                if (await GenericDataService.AddAsync(UriHelpers.GetModulesUri(), Module))
+                moduleDto.CourseId = CourseId;
+                var response = await Http.PostAsJsonAsync<ModuleDto>("api/Modules", moduleDto);
+                if (response.IsSuccessStatusCode)
                 {
                     NavigationManager.NavigateTo("/courses");
-                }
-                else
+                } else
                 {
-                    ErrorMessage = "Could not add module";
+                    ErrorMessage = "Could not add Module!";
                 }
+                
             }
+
             catch (Exception ex)
             {
                 ErrorMessage = $"{ex.Message} {ex.HResult}";
