@@ -34,6 +34,7 @@
                                 <td>@course.CourseName</td>
                                 <td>@course.CourseDescription</td>
                                 <td>@course.StartDate.ToShortDateString()</td>
+                                <td><a href="@($"/ViewStudents/{course.Id}")" class="btn btn-outline-primary">View Students</a></td>
                                 <td><a href="@($"/ModuleAdd/{course.Id}")" class="btn btn-outline-primary">Add Module</a></td>
                                 <td><a href="@($"/ModuleUpdate/{course.Id}")" class="btn btn-outline-primary">Update Module</a></td>
                                 <td><a href="@($"/ModuleDelete/{course.Id}")" class="btn btn-outline-primary">Delete Module</a></td>

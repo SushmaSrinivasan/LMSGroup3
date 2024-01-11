@@ -8,8 +8,8 @@ namespace LMSGroup3.Server.Repositories
     {
         Task<Course> GetCourseForStudent(string studentId);
         Task<IEnumerable<ApplicationUserDto>> GetStudentsInSameCourse(string studentId);
+        Task<IEnumerable<ApplicationUserDto>> GetStudentsInCourse(int courseId);
 
         //Course GetCourseForStudent(string studentId);
     }
-
 }
